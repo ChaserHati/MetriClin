@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.custom-primary-bg {
+    background-color: #00B2FF;
+  }
+.custom-primary-txt{
+    color:#00B2FF;
+}
+
+.custom-light-bg {
+    background-color: #87DBFF;
+  }
+
+.custom-light-txt{
+    color:#87DBFF;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,53 @@
+<div  class="container">
+    <div class="row align-items-center h-100">
+        <div class="col me-3"> <!-- mitad izquierda-->
+            <div class="row"> <!--header-->
+                <h1 class="text-left custom-primary-txt">Ficha Paciente</h1>
+            </div>
+            <div class="row"> <!--inputs-->
+                <div class="col">
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Primer Nombre">
+                    </div>
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Apellido Paterno">
+                    </div>
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Apellido Materno">
+                    </div>             
+                </div>
+                <div class="col">
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Fecha de Nacimiento">
+                    </div>
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Correo Electronico">
+                    </div>
+                    <div class="input-group my-3">
+                        <input type="text" class="form-control" aria-label="Numero de Telefono">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3"> <!--text field-->
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="row"> <!--botones-->
+                <div class="col">
+                    <button type="button" class="btn btn-primary">Ver Historial</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary">Nueva Consulta</button>
+                </div>
+            </div>
+        </div>
+        <div class="col text-center custom-primary-bg"> <!-- mitad derecha -->
+            <div class="row">
+                <div class="d-flex flex-column align-items-center justify-content-evenly vh-100">
+                    <canvas id="canvas1" class="w-50 bg-light" style="height: 200px;"></canvas>
+                    <canvas id="canvas2" class="w-50 bg-light" style="height: 200px;"></canvas>
+                    <canvas id="canvas3" class="w-50 bg-light" style="height: 200px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
