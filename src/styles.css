@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@angular/material/prebuilt-themes/azure-blue.css';
 
 .custom-primary-bg {
     background-color: #00B2FF;

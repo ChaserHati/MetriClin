@@ -1,12 +1,12 @@
 <mat-sidenav-container>
-    <mat-sidenav #drawer mode="side" opened>
+    <mat-sidenav #drawer mode="side">
         <div class="container-fluid custom-primary-bg">
 
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
+        <button type="button" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
         </button>
       <router-outlet/>
     </mat-sidenav-content>

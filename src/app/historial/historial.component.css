@@ -1,0 +1,22 @@
+.card-row {
+    display: flex;
+    flex-wrap: nowrap; /* 🔥 Prevent stacking */
+    overflow-x: auto;  /* Enable horizontal scroll */
+    gap: 16px;         /* Space between cards */
+    padding: 8px;
+}
+  
+.custom-card {
+    min-width: 250px;  /* Set a fixed width so cards don’t shrink too much */
+    flex: 0 0 30%;    /* Prevent flex from trying to fit all cards in */
+    height: 30vh;
+}
+
+mat-card-content {
+    flex: 1 1 auto; /* This makes it expand to fill space */
+}
+
+mat-card-actions {
+    margin-top: auto; /* Pushes the actions section to the bottom */
+    align-self: center;
+}

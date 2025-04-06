@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row align-items-center vh-100 mx-1">
+        <div class="col">
+            <h1 class="text-left custom-primary-txt">Evaluación</h1>
+            <form>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Fecha de Evaluación</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    <div class="col">
+                        <mat-form-field>
+                            <mat-label>Peso</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field>
+                        <mat-label>Talla</mat-label>
+                        <input matInput>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row justify-content-center g-2">
+                        <button mat-flat-button class="half">Pliegues</button>
+                        <button mat-flat-button class="half">Perímetros</button>
+                        <button mat-flat-button class="half">Diametros</button>
+                </div>
+                <div class="row my-3">
+                    <button mat-flat-button>Guardar Datos</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="row">
+                <mat-form-field>
+                    <mat-label>Diagnóstico</mat-label>
+    
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </div>
+            <div class="row">
+            <mat-form-field>
+                <mat-label>Tratamiento</mat-label>
+
+                <textarea matInput></textarea>
+            </mat-form-field>
+            </div>  
+        </div>
+    </div>
+</div>

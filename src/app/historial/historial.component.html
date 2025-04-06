@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row align-items-center vh-100">
+        <div class="col">
+            <h1 class="text-left custom-primary-txt">Historial Evaluaciones</h1>
+            <div class="row card-row">
+                <mat-card class="custom-card" appearance="outlined" *ngFor="let card of cards">
+                    <mat-card-title> {{card.title}} </mat-card-title>
+                    <mat-card-content> {{card.content}} </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-flat-button>Ver Evaluacion</button>
+                      </mat-card-actions>
+                    </mat-card>
+            </div>
+        </div>
+        
+    </div>
+</div>
