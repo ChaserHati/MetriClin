@@ -1,0 +1,8 @@
+mat-card-content {
+    flex: 1 1 auto; /* This makes it expand to fill space */
+}
+
+mat-card-actions {
+    margin-top: auto; /* Pushes the actions section to the bottom */
+    align-self: center;
+}

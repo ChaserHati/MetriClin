@@ -1,53 +1,74 @@
-<div  class="container">
-    <div class="row align-items-center h-100">
-        <div class="col me-3"> <!-- mitad izquierda-->
-            <div class="row"> <!--header-->
-                <h1 class="text-left custom-primary-txt">Ficha Paciente</h1>
-            </div>
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6"> <!-- mitad izquierda-->
+            <h1 class="text-left custom-primary-txt">Ficha Paciente</h1>
             <div class="row"> <!--inputs-->
-                <div class="col">
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Primer Nombre">
-                    </div>
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Apellido Paterno">
-                    </div>
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Apellido Materno">
-                    </div>             
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Primer Nombre</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Apellido Paterno</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Apellido Materno</mat-label>
+                        <input matInput>
+                      </mat-form-field>
                 </div>
-                <div class="col">
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Fecha de Nacimiento">
-                    </div>
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Correo Electronico">
-                    </div>
-                    <div class="input-group my-3">
-                        <input type="text" class="form-control" aria-label="Numero de Telefono">
-                    </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Correo Electrónico</mat-label>
+                        <input matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Número de Contacto</mat-label>
+                        <input matInput>
+                      </mat-form-field>
                 </div>
             </div>
-            <div class="row my-3"> <!--text field-->
-                <textarea class="form-control"></textarea>
+            <div class="row"> <!--text field-->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Apuntes</mat-label>
+                        <textarea matInput></textarea>
+                    </mat-form-field>
+                </div>
+                
             </div>
             <div class="row"> <!--botones-->
-                <div class="col">
-                    <button type="button" class="btn btn-primary">Ver Historial</button>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button mat-flat-button>Ver Historial</button>
                 </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary">Nueva Consulta</button>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                    <button mat-flat-button>Nueva Consulta</button>
                 </div>
             </div>
         </div>
-        <div class="col text-center custom-primary-bg"> <!-- mitad derecha -->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg"> <!-- mitad derecha -->
             <div class="row">
-                <div class="d-flex flex-column align-items-center justify-content-evenly vh-100">
-                    <canvas id="canvas1" class="w-50 bg-light" style="height: 200px;"></canvas>
-                    <canvas id="canvas2" class="w-50 bg-light" style="height: 200px;"></canvas>
-                    <canvas id="canvas3" class="w-50 bg-light" style="height: 200px;"></canvas>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <canvas id="canvas1" class="w-75 bg-light" style="height: 250px;"></canvas>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <canvas id="canvas2" class="w-75 bg-light" style="height: 250px;"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <canvas id="canvas3" class="w-75 bg-light" style="height: 250px;"></canvas>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
