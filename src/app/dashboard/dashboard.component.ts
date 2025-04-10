@@ -6,10 +6,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule,MatButtonModule, MatCardModule, MatInputModule, MatFormFieldModule, MatIconModule],
+  imports: [CommonModule,MatButtonModule, MatCardModule, MatInputModule, MatFormFieldModule, MatIconModule, MatSidenavModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
