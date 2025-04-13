@@ -1,6 +1,23 @@
 <mat-sidenav-container class="vh-100">
     <mat-sidenav mode="side" opened>
-        <p> contenido de sidenav aqui</p>
+        <div class="container-fluid vh-100">
+            <div class="row h-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
+                    <button mat-fab extended>
+                        <mat-icon>help</mat-icon>
+                        placeholder
+                      </button>
+                      <button mat-fab extended>
+                        <mat-icon>help</mat-icon>
+                        placeholder
+                      </button>
+                      <button mat-fab extended>
+                        <mat-icon>help</mat-icon>
+                        placeholder
+                      </button>
+                </div>
+            </div>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content class="">
         <div class="container-fluid vh-100">
@@ -30,10 +47,10 @@
                                 </mat-card-actions>
                             </mat-card>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3" *ngFor="let card of cards.slice(4, 8)">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3" *ngFor="let usuario of usuarios.slice(4, 8)">
                             <mat-card class="h-100" appearance="outlined">
-                                <mat-card-title> {{card.title}} </mat-card-title>
-                                <mat-card-content> {{card.content}} </mat-card-content>
+                                <mat-card-title> {{usuario.nombre}} </mat-card-title>
+                                <mat-card-content> {{usuario.rut}} </mat-card-content>
                                 <mat-card-actions>
                                     <button mat-flat-button>Ver Paciente</button>
                                 </mat-card-actions>
