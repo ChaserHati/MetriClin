@@ -25,7 +25,7 @@ export interface ReadEvaluacion {
   per_muslo: number;
   per_pantorrilla: number;
   diametro_humero: number;
-  diametro_muñeca: number;
+  diametro_muneca: number;
   diametro_femur: number;
   cod_imc: number;
   cod_grasa_corporal: number;
@@ -52,7 +52,7 @@ export interface CreateEvaluacion {
   per_muslo: number;
   per_pantorrilla: number;
   diametro_humero: number;
-  diametro_muñeca: number;
+  diametro_muneca: number;
   diametro_femur: number;
   cod_imc: number;
   cod_grasa_corporal: number;
@@ -79,7 +79,7 @@ export interface UpdateEvaluacion {
   per_muslo: number;
   per_pantorrilla: number;
   diametro_humero: number;
-  diametro_muñeca: number;
+  diametro_muneca: number;
   diametro_femur: number;
   cod_imc: number;
   cod_grasa_corporal: number;
@@ -122,7 +122,7 @@ export class ApiEvaluacionService {
           per_muslo: evaluacion[17],
           per_pantorrilla: evaluacion[18],
           diametro_humero: evaluacion[19],
-          diametro_muñeca: evaluacion[20],
+          diametro_muneca: evaluacion[20],
           diametro_femur: evaluacion[21],
           cod_imc: evaluacion[22],
           cod_grasa_corporal: evaluacion[23],
@@ -155,7 +155,7 @@ export class ApiEvaluacionService {
         per_muslo: res[17],
         per_pantorrilla: res[18],
         diametro_humero: res[19],
-        diametro_muñeca: res[20],
+        diametro_muneca: res[20],
         diametro_femur: res[21],
         cod_imc: res[22],
         cod_grasa_corporal: res[23],

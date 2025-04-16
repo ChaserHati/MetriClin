@@ -1,0 +1,125 @@
+<mat-sidenav-container class="vh-100">
+    <mat-sidenav mode="side" opened>
+        <div class="container-fluid vh-100">
+            <div class="row h-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
+                    <button mat-fab extended>
+                        <mat-icon>search-person</mat-icon>
+                        Pacientes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>bar-chart</mat-icon>
+                        Informes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>settings</mat-icon>
+                        Config
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="">
+        <div class="container-fluid vh-100">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <h1>Mediciones</h1>
+                    <h2>General</h2>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Peso</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.peso" [disabled]="isDisabled">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Talla</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.talla" [disabled]="isDisabled">
+                      </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <h2>Diametros</h2>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Humero</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.diametro_humero" [disabled]="isDisabled">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Muñeca</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.diametro_muneca" [disabled]="isDisabled">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Femur</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.diametro_femur" [disabled]="isDisabled">
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <h2>Pliegues</h2>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Bicipital</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_bicipital" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Tricipital</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_tricipital" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Subescapular</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_subescapular" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Cresta Iliaca</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_cresta_iliaca" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Espina Iliaca</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_espina_iliaca" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Abdomen</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_abdominal" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Muslo</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_muslo" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Pantorrilla</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_pantorrilla" [disabled]="isDisabled">
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <h2>Perimetros</h2>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Brazo</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_brazo" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Brazo Flexionado</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_brazo_flex" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Cintura</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_cintura" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Cadera</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_cadera" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Muslo</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_muslo" [disabled]="isDisabled">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Pantorrilla</mat-label>
+                        <input type="number" matInput [(ngModel)]="evaluacion.per_pantorrilla" [disabled]="isDisabled">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row>">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <p>aqui graficos de resultados</p>
+                </div>
+
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
