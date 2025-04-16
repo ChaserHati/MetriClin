@@ -1,0 +1,71 @@
+<div>
+
+    <div class="divtest">
+        <h3>Usuario</h3>
+        <div class="divtest">
+            <h5>Datos usuario</h5>
+            <p>{{user.nombre}}</p>
+            <h5>Datos de todos los usuarios</h5>
+            <div *ngFor="let user of users.slice(0,4)">
+                <p>{{user.nombre}}</p>
+                <p>{{user.rut}}</p>
+            </div>
+        </div>
+        <div class="divtest">
+            <h5>Crear usuario</h5>
+            <button (click)="crearUsuario()">crear usuario</button>
+
+        </div>
+        <div class="divtest">
+            <h5>actualizar usuario</h5>
+            <button (click)="actualizarUsuario()">actualizar usuario</button>
+        </div>
+        <div class="divtest">
+            <h5>Eliminar usuario</h5>
+            <button (click)="eliminarUsuario()">eliminar usuario</button>
+        </div>
+    </div>
+
+    <div class="divtest">
+        <h3>Ficha</h3>
+        <div class="divtest">
+            <h5>Datos ficha</h5>
+            <p>{{ficha.diagnostico}}</p>
+        </div>
+        <div class="divtest">
+            <h5>crear ficha</h5>
+            <button (click)="crearFicha()">crear ficha</button>
+
+        </div>
+        <div class="divtest">
+            <h5>actualizar ficha</h5>
+            <button (click)="actualizarFicha()">actualizar ficha</button>
+        </div>
+        <div class="divtest">
+            <h5>Eliminar ficha</h5>
+            <button (click)="eliminarFicha()">eliminar ficha</button>
+        </div>
+    </div>
+
+    <div class="divtest">
+        <h3>Evaluación</h3>
+        <div class="divtest">
+            <h5>Datos evaluación</h5>
+            <p>Peso: {{evaluacion.peso}}</p>
+        </div>
+        <div class="divtest">
+            <h5>crear evaluación</h5>
+            <button (click)="crearEvaluacion()">crear evaluación</button>
+
+        </div>
+        <div class="divtest">
+            <h5>actualizar evaluación</h5>
+            <button (click)="actualizarEvaluacion()">actualizar evaluación</button>
+        </div>
+        <div class="divtest">
+            <h5>Eliminar evaluación</h5>
+            <button (click)="eliminarEvaluacion()">eliminar evaluación</button>
+        </div>
+    </div>
+
+</div>

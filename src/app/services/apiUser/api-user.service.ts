@@ -4,12 +4,36 @@ import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface Users {
+export interface ReadUser {
   rut: string;
   nombre: string;
   ap_paterno: string;
   ap_materno: string;
+  fecha_nac: Date;
+  correo: string;
+  num_celular: number;
+}
+
+export interface CreateUser {
+  rut: string;
+  dv_rut: string;
+  nombre: string;
+  ap_paterno: string;
+  ap_materno: string;
   fecha_nac: string;
+  contraseña: string;
+  correo: string;
+  num_celular: number;
+  cod_rol: number;
+  cod_comuna: number;
+}
+
+export interface UpdateUser {
+  nombre: string;
+  ap_paterno: string;
+  ap_materno: string;
+  fecha_nac: string;
+  contraseña: string;
   correo: string;
   num_celular: number;
 }
@@ -25,7 +49,8 @@ export class ApiUserService {
 
   constructor() { }
 
-  getUsers(): Observable<Users[]> {
+
+  getUsers(): Observable<ReadUser[]> {
     return this.http.get<any[][]>(this.apiUrl).pipe(
       map(res =>
         res.map(usu => ({
@@ -33,7 +58,7 @@ export class ApiUserService {
           nombre: usu[1],
           ap_paterno: usu[2],
           ap_materno: usu[3],
-          fecha_nac: usu[4],
+          fecha_nac: new Date(usu[4]),
           correo: usu[5],
           num_celular: usu[6],
         }))
@@ -41,19 +66,31 @@ export class ApiUserService {
     );
   }
 
-  getUserByRut(rut: string): Observable<Users> {
+
+  getUserByRut(rut: string): Observable<ReadUser> {
     return this.http.get<any[]>(`${this.apiUrl}/${rut}`).pipe(
       map(res => ({
         rut: res[0],
         nombre: res[1],
         ap_paterno: res[2],
         ap_materno: res[3],
-        fecha_nac: res[4],
+        fecha_nac: new Date(res[4]),
         correo: res[5],
         num_celular: res[6],
       }))
     );
   }
 
+  createUser(infoUser: CreateUser) {
+    return this.http.post(this.apiUrl, infoUser);
+  }
+
+  updateUser(rut: string, infoUser: UpdateUser) {
+    return this.http.put(`${this.apiUrl}/${rut}`, infoUser)
+  }
+
+  deleteUser(rut: string) {
+    return this.http.delete(`${this.apiUrl}/${rut}`)
+  }
 
 }
