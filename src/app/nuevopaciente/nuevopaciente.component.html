@@ -1,1 +1,77 @@
-<p>nuevopaciente works!</p>
+<mat-sidenav-container class="vh-100">
+    <mat-sidenav mode="side" opened>
+        <div class="container-fluid vh-100">
+            <div class="row h-100">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
+                    <button mat-fab extended>
+                        <mat-icon>person_search</mat-icon>
+                        Pacientes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>bar_chart</mat-icon>
+                        Informes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>settings</mat-icon>
+                        Config
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="">
+        <div class="container-fluid vh-100">
+            <div class="row align-items-center h-100 d-flex justify-content-center">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 w-50">
+                    <div class="border rounded-5 border-4 px-3 py-2">
+                        <h1>Registro</h1>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Rut</mat-label>
+                            <input type="text" matInput [(ngModel)]="rut">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>DV</mat-label>
+                            <input type="text" matInput [(ngModel)]="dv_rut">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Primer Nombre</mat-label>
+                            <input type="text" matInput [(ngModel)]="nombre">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Apellido Paterno</mat-label>
+                            <input type="text" matInput [(ngModel)]="ap_paterno">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Apellido Materno</mat-label>
+                            <input type="text" matInput [(ngModel)]="ap_materno">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fecha de Nacimiento</mat-label>
+                            <input matInput [matDatepicker]="pickerNac" [(ngModel)]="picker_fecha_nac" (dateChange)="onDateChange($event)">
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerNac"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerNac></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Contraseña</mat-label>
+                            <input type="password" matInput [(ngModel)]="contrasena">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input type="email" matInput [(ngModel)]="correo">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Celular</mat-label>
+                            <input type="tel" matInput [(ngModel)]="num_celular">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Comuna</mat-label>
+                            <input type="text" matInput [(ngModel)]="cod_comuna">
+                        </mat-form-field>
+                        <button mat-flat-button class="w-100" (click)="testUsuarioCreado()">Crear Usuario</button>
+                        <!--cambiar la funcion del boton por la funcion de la api-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

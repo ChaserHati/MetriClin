@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -11,7 +13,7 @@ import { ApiEvaluacionService, ReadEvaluacion } from '../services/apiEvaluacion/
 
 @Component({
   selector: 'app-verevaluacion',
-  imports: [MatFormFieldModule, CommonModule, FormsModule, MatInputModule, MatSidenavModule, MatIconModule],
+  imports: [MatFormFieldModule, CommonModule, FormsModule, MatInputModule, MatSidenavModule, MatIconModule, MatButtonModule],
   templateUrl: './verevaluacion.component.html',
   styleUrl: './verevaluacion.component.css'
 })
@@ -47,12 +49,17 @@ evaluacion: ReadEvaluacion = {
   isDisabled: boolean = true;
 
   rut: string='';
-  constructor(private apiEvaluacionService: ApiEvaluacionService) { }
+  nro: number=0;
+
+  constructor(private apiEvaluacionService: ApiEvaluacionService, private route: ActivatedRoute) { 
+    this.route.params.subscribe(params=>{
+      //pendiente, pasar rut y nro de evaluacion mediante el params del route
+    })
+  }
 
   ngOnInit(): void {
-    this.apiEvaluacionService.getEvaluacionesByRut(this.rut).subscribe(res=>{
-      this.evaluacion = res[0];
-
+    this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut,this.nro).subscribe(res=>{
+      this.evaluacion = res;
     })
   }
 }

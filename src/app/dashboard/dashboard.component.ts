@@ -28,7 +28,7 @@ export class DashboardComponent {
       ap_paterno: 'Desde',
       ap_materno: 'Front',
       fecha_nac: '05-05-2025',
-      contraseña: 'string123',
+      contrasena: 'string123',
       correo: 'testing@gmail.com',
       num_celular: 987687687,
       cod_rol: 3,

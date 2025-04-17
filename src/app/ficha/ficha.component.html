@@ -6,15 +6,15 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Primer Nombre</mat-label>
-            <input matInput>
+            <input type="text" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Apellido Paterno</mat-label>
-            <input matInput>
+            <input type="text" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Apellido Materno</mat-label>
-            <input matInput>
+            <input type="text" matInput>
           </mat-form-field>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -26,11 +26,11 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Correo Electrónico</mat-label>
-            <input matInput>
+            <input type="email" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Número de Contacto</mat-label>
-            <input matInput>
+            <input type="tel" matInput>
           </mat-form-field>
         </div>
       </div>
@@ -38,11 +38,11 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Diagnóstico</mat-label>
-            <input matInput>
+            <input type="text" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Tratamiento</mat-label>
-            <input matInput>
+            <input type="text" matInput>
           </mat-form-field>
         </div>
       </div>
@@ -58,7 +58,7 @@
             <span>{{ ev.title }} - {{ ev.date }}</span>
             <div class="d-flex align-items-center gap-2">
               <button mat-flat-button>Ver Evaluación</button>
-              <mat-checkbox></mat-checkbox>
+              <mat-checkbox [checked]="ev.selected"></mat-checkbox>
             </div>
           </div>
 

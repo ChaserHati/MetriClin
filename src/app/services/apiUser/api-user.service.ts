@@ -21,7 +21,7 @@ export interface CreateUser {
   ap_paterno: string;
   ap_materno: string;
   fecha_nac: string;
-  contraseña: string;
+  contrasena: string;
   correo: string;
   num_celular: number;
   cod_rol: number;
@@ -33,7 +33,7 @@ export interface UpdateUser {
   ap_paterno: string;
   ap_materno: string;
   fecha_nac: string;
-  contraseña: string;
+  contrasena: string;
   correo: string;
   num_celular: number;
 }

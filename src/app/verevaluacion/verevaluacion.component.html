@@ -4,11 +4,11 @@
             <div class="row h-100">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
                     <button mat-fab extended>
-                        <mat-icon>search-person</mat-icon>
+                        <mat-icon>person_search</mat-icon>
                         Pacientes
                     </button>
                     <button mat-fab extended>
-                        <mat-icon>bar-chart</mat-icon>
+                        <mat-icon>bar_chart</mat-icon>
                         Informes
                     </button>
                     <button mat-fab extended>
@@ -23,8 +23,8 @@
         <div class="container-fluid vh-100">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <h1>Mediciones</h1>
-                    <h2>General</h2>
+                    <h2>Mediciones</h2>
+                    <h3>General</h3>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Peso</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.peso" [disabled]="isDisabled">
@@ -35,7 +35,7 @@
                       </mat-form-field>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <h2>Diametros</h2>
+                    <h3>Diametros</h3>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Humero</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.diametro_humero" [disabled]="isDisabled">
@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <h2>Pliegues</h2>
+                    <h3>Pliegues</h3>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Bicipital</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.pli_bicipital" [disabled]="isDisabled">
@@ -87,7 +87,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <h2>Perimetros</h2>
+                    <h3>Perimetros</h3>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Brazo</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.per_brazo" [disabled]="isDisabled">
