@@ -22,22 +22,22 @@ import { DatePipe } from '@angular/common';
 })
 export class NuevopacienteComponent {
 
-  picker_fecha_nac: Date|null = null;
-
   rut: string='';
   dv_rut: string='';
   nombre: string  = '';
   ap_paterno: string = '';
   ap_materno: string = '';
+  picker_fecha_nac: Date|null = null;
   fecha_nac: string = '';
   contrasena: string = '';
   correo: string = '';
   num_celular: number|null=null;
   cod_comuna: number|null=null;
 
-  get infoNuevoUser(): CreateUser {
-    console.log("getter ejecutado")
-    return {
+  constructor(private apiUserService:ApiUserService, private datePipe:DatePipe){}
+
+  setUser(){
+    const newUser:CreateUser={
       rut: this.rut,
       dv_rut: this.dv_rut,
       nombre: this.nombre,
@@ -49,17 +49,16 @@ export class NuevopacienteComponent {
       num_celular: this.num_celular ?? 0,
       cod_rol: 0,
       cod_comuna: this.cod_comuna ?? 0,
-    };
+    }
+    return newUser;
   }
 
-  constructor(private apiUserService:ApiUserService, private datePipe:DatePipe){}
-
   testUsuarioCreado(){
-    console.log("Usuario creado: ", this.infoNuevoUser);
+    console.log("Usuario creado: ", this.setUser());
   }
 
   crearUsuario() {
-    this.apiUserService.createUser(this.infoNuevoUser).subscribe({
+    this.apiUserService.createUser(this.setUser()).subscribe({
       next: respuesta => {
         console.log('Usuario creado:', respuesta);
       },
@@ -68,7 +67,7 @@ export class NuevopacienteComponent {
       }
     })
   }
-
+  //---
   onDateChange(event: any) {
     console.log("Confirmando fecha: ",this.picker_fecha_nac)
     if (this.picker_fecha_nac instanceof Date) {
@@ -87,4 +86,5 @@ export class NuevopacienteComponent {
     console.log("convertiendo Date a string")
     return this.datePipe.transform(date, 'dd-MM-yyyy');
   }
+  //---
 }

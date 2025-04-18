@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,11 @@ import { ApiEvaluacionService, ReadEvaluacion } from '../services/apiEvaluacion/
   styleUrl: './verevaluacion.component.css'
 })
 export class VerevaluacionComponent {
-evaluacion: ReadEvaluacion = {
+
+  rut: string='';
+  nro: number=0;
+
+  evaluacion: ReadEvaluacion = {
     nro_evaluacion: 0,
     fecha_evaluacion: '',
     descripcion: '',
@@ -48,18 +52,18 @@ evaluacion: ReadEvaluacion = {
 
   isDisabled: boolean = true;
 
-  rut: string='';
-  nro: number=0;
 
-  constructor(private apiEvaluacionService: ApiEvaluacionService, private route: ActivatedRoute) { 
-    this.route.params.subscribe(params=>{
-      //pendiente, pasar rut y nro de evaluacion mediante el params del route
-    })
+
+  constructor(private apiEvaluacionService: ApiEvaluacionService, private route: ActivatedRoute, private router:Router ) { 
   }
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params =>{
+      this.rut=params.get('rut')??'';
+      this.nro=Number(params.get('nro')??0)
+    });
     this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut,this.nro).subscribe(res=>{
       this.evaluacion = res;
-    })
+    });
   }
 }

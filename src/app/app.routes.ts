@@ -11,10 +11,14 @@ export const routes: Routes = [
 
     { path: 'dashboard', component: DashboardComponent },
     { path: 'ficha', component: FichaComponent },
+    { path: 'ficha/:id', component: FichaComponent },
     { path: 'historial', component: HistorialComponent },
+    { path: 'historial/:id', component: HistorialComponent },
     { path: 'evaluacion', component: EvaluacionComponent },
-    {path: 'verevaluacion', component: VerevaluacionComponent},
-    {path: 'nuevopaciente', component: NuevopacienteComponent},
+    { path: 'evaluacion/:id', component: EvaluacionComponent },
+    { path: 'verevaluacion', component: VerevaluacionComponent},
+    { path: 'verevaluacion/:id', component: VerevaluacionComponent},
+    { path: 'nuevopaciente', component: NuevopacienteComponent},
 
     { path: 'test-service', component: TestServiceComponent },
 ];

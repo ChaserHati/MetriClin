@@ -73,7 +73,7 @@ export class TestServiceComponent {
     rut: '15123123',
     descripcion: 'descripcio ficha',
     diagnostico: 'sobrepeso',
-    objetivo: 'bajar e peso',
+    objetivo: 'bajar de peso',
     tratamiento: 'reg hipocalorico',
     fecha_ingreso: '01-01-2025',
     fecha_prox_sesion: '01-02-2025'

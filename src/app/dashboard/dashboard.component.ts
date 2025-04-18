@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service'; //import servicios e interfaces
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service';
 })
 export class DashboardComponent {
 
-  constructor(private apiUserService: ApiUserService) { } //inicializa el servicio
+  constructor(private apiUserService: ApiUserService, private router:Router) { } //inicializa el servicio
 
   usuarios: ReadUser[] = []; //variable que contendra los datos
 
@@ -50,6 +51,13 @@ export class DashboardComponent {
     this.apiUserService.getUsers().subscribe(user => {
       this.usuarios = user;
     });
+  }
+
+  ir_a_paciente(rut:string){
+    this.router.navigate(['/ficha',rut]);
+  }
+  ir_a_nuevo_paciente(){
+    this.router.navigate(['/nuevopaciente']);
   }
 
 

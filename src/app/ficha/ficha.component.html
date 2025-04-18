@@ -1,49 +1,75 @@
 <div class="container-fluid vh-100">
   <div class="row align-items-center h-100">
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 px-3"> <!-- mitad izquierda-->
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6"> <!-- mitad izquierda-->
       <h1 class="text-left custom-primary-txt">Ficha Paciente</h1>
       <div class="row"> <!--inputs-->
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Primer Nombre</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="user.nombre">
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Apellido Paterno</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="user.ap_paterno">
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Apellido Materno</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="user.ap_materno">
           </mat-form-field>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput [matDatepicker]="pickerNac" [(ngModel)]="user.fecha_nac">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerNac"></mat-datepicker-toggle>
+            <mat-datepicker #pickerNac></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Correo Electrónico</mat-label>
-            <input type="email" matInput>
+            <input type="email" matInput [(ngModel)]="user.correo">
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Número de Contacto</mat-label>
-            <input type="tel" matInput>
+            <input type="tel" matInput [(ngModel)]="user.num_celular">
           </mat-form-field>
         </div>
       </div>
-      <div class="row my-3">
+      <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
           <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Descripción</mat-label>
+            <input type="text" matInput [(ngModel)]="ficha.descripcion">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
             <mat-label>Diagnóstico</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="ficha.diagnostico">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Objetivo</mat-label>
+            <input type="text" matInput [(ngModel)]="ficha.objetivo">
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Tratamiento</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput [(ngModel)]="ficha.tratamiento">
           </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Fecha Ingreso</mat-label>
+              <input matInput [matDatepicker]="pickerIng" [(ngModel)]="ficha.fecha_ingreso">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerIng"></mat-datepicker-toggle>
+              <mat-datepicker #pickerIng></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Fecha Prox. Sesión</mat-label>
+              <input matInput [matDatepicker]="pickerProx" [(ngModel)]="ficha.fecha_prox_sesion">
+              <mat-datepicker-toggle matIconSuffix [for]="pickerProx"></mat-datepicker-toggle>
+              <mat-datepicker #pickerProx></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
       </div>
       <div class="row my-3">
@@ -53,27 +79,23 @@
       </div>
       <div class="row my-3">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div *ngFor="let ev of evaluations"
-            class="border rounded-pill px-3 py-2 d-flex justify-content-between align-items-center">
-            <span>{{ ev.title }} - {{ ev.date }}</span>
+          <div *ngFor="let eval of evaluaciones" class="border rounded-4 px-3 py-2 d-flex justify-content-between align-items-center">
+            <span></span>
             <div class="d-flex align-items-center gap-2">
-              <button mat-flat-button>Ver Evaluación</button>
-              <mat-checkbox [checked]="ev.selected"></mat-checkbox>
+              <button mat-flat-button (click)="ir_a_evaluacion(rut,eval.nro_evaluacion)">Ver Evaluación</button>
+              <mat-checkbox></mat-checkbox>
             </div>
           </div>
-
-
         </div>
       </div>
-
-      <div class="row my-3">
+      <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <button mat-flat-button class="w-100">Crear Informe</button>
+          <button mat-flat-button class="w-100 my-1">Crear Informe</button>
+          <button mat-flat-button class="w-100 my-1" (click)="ir_a_historial(rut)">Ver Historial</button>
         </div>
       </div>
     </div>
-    <div
-      class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg vh-100 d-flex flex-column justify-content-evenly align-items-center">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg vh-100 d-flex flex-column justify-content-evenly align-items-center">
       <!-- mitad derecha -->
       <canvas id="canvas1" class="w-55 bg-light" style="height: 250px;"></canvas>
       <canvas id="canvas2" class="w-55 bg-light" style="height: 250px;"></canvas>
