@@ -1,28 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
-import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-
-export interface Users {
-  rut: string;
-  nombre: string;
-  ap_paterno: string;
-  ap_materno: string;
-  fecha_nac: string;
-  correo: string;
-  num_celular: number;
-}
+import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service'; //import servicios e interfaces
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,45 +17,48 @@ export interface Users {
 })
 export class DashboardComponent {
 
-  // private apiUrl = 'http://localhost:3000/api/user';
-  private apiUrl = 'https://metriclin-back-production.up.railway.app/api/user';
-  private http = inject(HttpClient);
+  constructor(private apiUserService: ApiUserService, private router:Router) { } //inicializa el servicio
 
-  getUsers(): Observable<Users[]> {
-    return this.http.get<any[][]>(this.apiUrl).pipe(
-      map(res =>
-        res.map(usu => ({
-          rut: usu[0],
-          nombre: usu[1],
-          ap_paterno: usu[2],
-          ap_materno: usu[3],
-          fecha_nac: usu[4],
-          correo: usu[5],
-          num_celular: usu[6],
-        }))
-      )
-    );
+  usuarios: ReadUser[] = []; //variable que contendra los datos
+
+  crearUsuario() {
+    const infoNewUser = {
+      rut: '18123123',
+      dv_rut: 'K',
+      nombre: 'Testing',
+      ap_paterno: 'Desde',
+      ap_materno: 'Front',
+      fecha_nac: '05-05-2025',
+      contrasena: 'string123',
+      correo: 'testing@gmail.com',
+      num_celular: 987687687,
+      cod_rol: 3,
+      cod_comuna: 1
+    }
+    // this.apiUserService.createUser(infoNewUser);
+    this.apiUserService.createUser(infoNewUser).subscribe({
+      next: respuesta => {
+        console.log('Usuario creado:', respuesta);
+      },
+      error: error => {
+        console.error('Error al crear usuario:', error);
+      }
+    })
   }
-
-  usuarios: Users[] = [];
 
   ngOnInit(): void {
-
-    this.getUsers().subscribe(user => {
+    //llama el método get del servicio users y guarda los datos obtenidos en la variable usuarios
+    this.apiUserService.getUsers().subscribe(user => {
       this.usuarios = user;
     });
-
   }
 
-  cards = [
-    { title: 'Card 1', content: 'This is card 1' },
-    { title: 'Card 2', content: 'This is card 2' },
-    { title: 'Card 3', content: 'This is card 3' },
-    { title: 'Card 4', content: 'This is card 4' },
-    { title: 'Card 5', content: 'This is card 5' },
-    { title: 'Card 6', content: 'This is card 6' },
-    { title: 'Card 7', content: 'This is card 7' },
-    { title: 'Card 8', content: 'This is card 8' },
-  ];
+  ir_a_paciente(rut:string){
+    this.router.navigate(['/ficha',rut]);
+  }
+  ir_a_nuevo_paciente(){
+    this.router.navigate(['/nuevopaciente']);
+  }
+
 
 }

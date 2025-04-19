@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-export interface Evaluacion {
+export interface ReadEvaluacion {
   nro_evaluacion: number;
   fecha_evaluacion: string;
   descripcion: string;
@@ -25,12 +25,67 @@ export interface Evaluacion {
   per_muslo: number;
   per_pantorrilla: number;
   diametro_humero: number;
-  diametro_muñeca: number;
+  diametro_muneca: number;
   diametro_femur: number;
   cod_imc: number;
   cod_grasa_corporal: number;
   cod_masa_muscular: number;
 }
+
+export interface CreateEvaluacion {
+  fecha_evaluacion: string;
+  descripcion: string;
+  peso: number;
+  talla: number;
+  pli_bicipital: number;
+  pli_tricipital: number;
+  pli_subescapular: number;
+  pli_cresta_iliaca: number;
+  pli_espina_iliaca: number;
+  pli_abdominal: number;
+  pli_muslo: number;
+  pli_pantorrilla: number;
+  per_brazo: number;
+  per_brazo_flex: number;
+  per_cintura: number;
+  per_cadera: number;
+  per_muslo: number;
+  per_pantorrilla: number;
+  diametro_humero: number;
+  diametro_muneca: number;
+  diametro_femur: number;
+  cod_imc: number;
+  cod_grasa_corporal: number;
+  cod_masa_muscular: number;
+}
+
+export interface UpdateEvaluacion {
+  fecha_evaluacion: string;
+  descripcion: string;
+  peso: number;
+  talla: number;
+  pli_bicipital: number;
+  pli_tricipital: number;
+  pli_subescapular: number;
+  pli_cresta_iliaca: number;
+  pli_espina_iliaca: number;
+  pli_abdominal: number;
+  pli_muslo: number;
+  pli_pantorrilla: number;
+  per_brazo: number;
+  per_brazo_flex: number;
+  per_cintura: number;
+  per_cadera: number;
+  per_muslo: number;
+  per_pantorrilla: number;
+  diametro_humero: number;
+  diametro_muneca: number;
+  diametro_femur: number;
+  cod_imc: number;
+  cod_grasa_corporal: number;
+  cod_masa_muscular: number;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +98,7 @@ export class ApiEvaluacionService {
 
   constructor() { }
 
-  getEvaluacionesByRut(rut: string): Observable<Evaluacion[]> {
+  getEvaluacionesByRut(rut: string): Observable<ReadEvaluacion[]> {
     return this.http.get<any[][]>(`${this.apiUrl}/${rut}`).pipe(
       map(res =>
         res.map(evaluacion => ({
@@ -67,7 +122,7 @@ export class ApiEvaluacionService {
           per_muslo: evaluacion[17],
           per_pantorrilla: evaluacion[18],
           diametro_humero: evaluacion[19],
-          diametro_muñeca: evaluacion[20],
+          diametro_muneca: evaluacion[20],
           diametro_femur: evaluacion[21],
           cod_imc: evaluacion[22],
           cod_grasa_corporal: evaluacion[23],
@@ -77,7 +132,7 @@ export class ApiEvaluacionService {
     );
   }
 
-  getEvaluacionByNroAndRut(nro_eva: number, rut: string): Observable<Evaluacion> {
+  getEvaluacionByNroAndRut(rut: string, nro_eva: number): Observable<ReadEvaluacion> {
     return this.http.get<any[]>(`${this.apiUrl}/${rut}/${nro_eva}`).pipe(
       map(res => ({
         nro_evaluacion: res[0],
@@ -100,7 +155,7 @@ export class ApiEvaluacionService {
         per_muslo: res[17],
         per_pantorrilla: res[18],
         diametro_humero: res[19],
-        diametro_muñeca: res[20],
+        diametro_muneca: res[20],
         diametro_femur: res[21],
         cod_imc: res[22],
         cod_grasa_corporal: res[23],
@@ -108,4 +163,19 @@ export class ApiEvaluacionService {
       }))
     );
   }
+
+  createEvaluacion(rut: string, infoUser: CreateEvaluacion) {
+    return this.http.post(`${this.apiUrl}/${rut}`, infoUser);
+  }
+
+  updateEvaluacion(rut: string, nro_ev: number, infoUser: UpdateEvaluacion) {
+    return this.http.put(`${this.apiUrl}/${rut}/${nro_ev}`, infoUser)
+  }
+
+  deleteEvaluacion(rut: string, nro_ev: number) {
+    return this.http.delete(`${this.apiUrl}/${rut}/${nro_ev}`)
+  }
+
+
+
 }

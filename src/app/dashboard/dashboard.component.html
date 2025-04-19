@@ -4,17 +4,17 @@
             <div class="row h-100">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
                     <button mat-fab extended>
-                        <mat-icon>help</mat-icon>
-                        placeholder
-                      </button>
-                      <button mat-fab extended>
-                        <mat-icon>help</mat-icon>
-                        placeholder
-                      </button>
-                      <button mat-fab extended>
-                        <mat-icon>help</mat-icon>
-                        placeholder
-                      </button>
+                        <mat-icon>person_search</mat-icon>
+                        Pacientes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>bar_chart</mat-icon>
+                        Informes
+                    </button>
+                    <button mat-fab extended>
+                        <mat-icon>settings</mat-icon>
+                        Config
+                    </button>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                             </mat-form-field>
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center">
-                            <button mat-flat-button class="w-100">Nuevo Paciente</button>
+                            <button mat-flat-button class="w-100" (click)="ir_a_nuevo_paciente()">Nuevo Paciente</button>
                         </div>
                     </div>
                     <div class="row my-3 h-50">
@@ -43,16 +43,17 @@
                                 <mat-card-title> {{usuario.nombre}} </mat-card-title>
                                 <mat-card-content> {{usuario.rut}} </mat-card-content>
                                 <mat-card-actions>
-                                    <button mat-flat-button>Ver Paciente</button>
+                                    <button mat-flat-button (click)="ir_a_paciente(usuario.rut)">Ver Paciente</button>
                                 </mat-card-actions>
                             </mat-card>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3" *ngFor="let usuario of usuarios.slice(4, 8)">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3"
+                            *ngFor="let usuario of usuarios.slice(4, 8)">
                             <mat-card class="h-100" appearance="outlined">
                                 <mat-card-title> {{usuario.nombre}} </mat-card-title>
                                 <mat-card-content> {{usuario.rut}} </mat-card-content>
                                 <mat-card-actions>
-                                    <button mat-flat-button>Ver Paciente</button>
+                                    <button mat-flat-button (click)="ir_a_paciente(usuario.rut)">Ver Paciente</button>
                                 </mat-card-actions>
                             </mat-card>
                         </div>

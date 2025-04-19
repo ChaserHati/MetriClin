@@ -4,7 +4,24 @@ import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface Ficha {
+export interface CreateFicha {
+  rut: string;
+  descripcion: string;
+  diagnostico: string;
+  objetivo: string;
+  tratamiento: string;
+  fecha_ingreso: string;
+  fecha_prox_sesion: string;
+}
+export interface ReadFicha {
+  descripcion: string;
+  diagnostico: string;
+  objetivo: string;
+  tratamiento: string;
+  fecha_ingreso: string;
+  fecha_prox_sesion: string;
+}
+export interface UpdateFicha {
   descripcion: string;
   diagnostico: string;
   objetivo: string;
@@ -24,7 +41,7 @@ export class ApiFichaService {
 
   constructor() { }
 
-  getFichaByRut(rut: string): Observable<Ficha> {
+  getFichaByRut(rut: string): Observable<ReadFicha> {
     return this.http.get<any[]>(`${this.apiUrl}/${rut}`).pipe(
       map(res => ({
         descripcion: res[0],
@@ -36,4 +53,17 @@ export class ApiFichaService {
       }))
     )
   }
+
+  createFicha(infoFicha: CreateFicha) {
+    return this.http.post(this.apiUrl, infoFicha);
+  }
+
+  updateFicha(rut: string, infoFicha: UpdateFicha) {
+    return this.http.put(`${this.apiUrl}/${rut}`, infoFicha)
+  }
+
+  deleteFicha(rut: string) {
+    return this.http.delete(`${this.apiUrl}/${rut}`)
+  }
+
 }
