@@ -1,0 +1,29 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: #1976d2; /* azul angular material */
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  nav button {
+    background-color: #1976d2; /* azul material */
+   color: #ffffff; /* texto blanco */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav button:hover {
+    background-color: #e3f2fd;
+  }
+  
