@@ -1,0 +1,58 @@
+<app-navega></app-navega>
+<div class="container">
+
+    <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+        
+        <h3 style="text-align: center;">Registro</h3>
+          
+         <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Rut</mat-label>
+            <input matInput forControlName="rut" required>
+         </mat-form-field>
+
+         <mat-form-field class="small-input" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required>
+         </mat-form-field>
+
+         <mat-form-field class="full-widt" appearance="outline">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput forControlName="apellidoPaterno" required>
+         </mat-form-field>
+
+         <mat-form-field class="full-widt" appearance="outline">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput forControlName="apellidoMaterno" required>
+         </mat-form-field>
+
+         <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      
+          
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="email" formControlName="correo" required>
+          </mat-form-field>
+      
+          
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="contrasena" required>
+            
+          </mat-form-field>
+      
+          
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input matInput formControlName="celular" required>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="full-width" type="submit">Registrarse</button>
+
+    </form>
+
+</div>

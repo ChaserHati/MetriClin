@@ -1,0 +1,40 @@
+.container {
+    max-width: 300px;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.1rem;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+
+  input.mat-input-element {
+    font-size: 14px;
+    height: 24px !important;    /* Altura del input */
+    line-height: 24px !important;
+  }
+
+  .small-input {
+    width: 100%;
+    margin-bottom: 0.3rem;
+  }
+  
+  .small-input .mat-mdc-form-field-infix {
+    padding: 2px 0 !important;  /* Reduce el espacio vertical */
+  }
+  
+  .small-input .mat-mdc-text-field-wrapper {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .small-input input.mat-input-element {
+    font-size: 13px;
+    height: 28px !important;
+    line-height: 28px !important;
+  }
+  

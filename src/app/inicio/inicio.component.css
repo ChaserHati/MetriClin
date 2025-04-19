@@ -1,0 +1,64 @@
+.container {
+    display: flex;                      /* Utilizamos flexbox para el alineamiento */
+    justify-content: space-between;     /* Se distribuyen los elementos entre el inicio y el final */
+    align-items: center;                /* Alinea los elementos verticalmente al centro */
+    padding-left: 20px; 
+    margin-top: 0; 
+    margin-left: 0;                    /* Espaciado general dentro del contenedor */
+  }
+  
+  .container-imagen {
+    width: 100%;
+    position: absolute;
+    top: 7rem;        /* Se necesita para que bottom y left funcionen */
+    bottom: 3rem;           /* Fija la distancia desde abajo */
+    right: 4rem;             /* Fija la distancia desde la izquierda */
+    max-width: 600px;
+    max-height: 600px;
+    z-index: 1002;          /* Se asegura de estar por encima del logo */
+    pointer-events: none;   /* No interfiere con clics */
+    padding: 2rem;
+  }
+  
+  
+  
+  .logo-container {
+ 
+    font-size: 2rem; 
+    margin-top: 20px;                     
+  }
+
+  .container-imagen img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  @media (max-width: 800px) {
+    .container-imagen {
+      display: none;
+    }
+  }
+
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;                
+    background-color: #e4e6e7;   
+    display: flex;               
+    justify-content: center;     
+    align-items: center;         
+    font-size: 1.5rem;           
+    color: rgb(26, 24, 24);                
+    z-index: 1000;               
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+  }
+  
+ 
+  .footer span {
+    font-weight: bold;           
+  }
+  
