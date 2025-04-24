@@ -3,19 +3,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { NavegaComponent } from '../navega/navega.component';
 import { MatError } from '@angular/material/form-field';
+import { AuthService } from '../services/apiAuth/auth.service';
+
+interface TokenResponse {
+  token: string;
+}
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, MatFormFieldModule, MatInputModule,MatButtonModule
-    , FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIconModule,NavegaComponent 
-   ],
-
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule
+    , FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatIconModule, NavegaComponent
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,18 +27,30 @@ export class LoginComponent {
   loginForm: FormGroup;
   hide = true; // Para mostrar/ocultar contraseña
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      rutuser: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
+      const { rutuser, password } = this.loginForm.value;
+      const infoauth = {
+        rut: rutuser,
+        password: password
+      }
       // Aquí va la lógica para validar el login
-      console.log('Usuario:', username, 'Contraseña:', password);
+      this.authService.login(infoauth).subscribe({
+        next: (res) => {
+          this.authService.saveToken(res.token);
+          console.log('Usuario autenticado, la respuesta es:', res.token);
+        },
+        error: error => {
+          console.error('Error al autenticar usuario:', error);
+        }
+      })
     }
   }
 }

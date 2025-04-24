@@ -47,10 +47,12 @@ export class TestServiceComponent {
     ap_paterno: 'Gonzalez',
     ap_materno: 'Perez',
     fecha_nac: '05-05-1995',
+    sexo: 'masculino',
     contrasena: 'string123',
     correo: 'pedro@gmail.com',
     num_celular: 987687687,
-    cod_rol: 3,
+    rut_evaluador: '',
+    cod_rol: 2,
     cod_comuna: 1
   }
 
@@ -145,8 +147,10 @@ export class TestServiceComponent {
     ap_paterno: '',
     ap_materno: '',
     fecha_nac: new Date(),
+    sexo: '',
     correo: '',
-    num_celular: 0
+    num_celular: 0,
+    rut_evaluador: ''
   }
   ficha: ReadFicha = {
     descripcion: '',

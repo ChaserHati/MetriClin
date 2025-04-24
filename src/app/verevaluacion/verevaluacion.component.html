@@ -28,26 +28,26 @@
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Peso</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.peso" [disabled]="isDisabled">
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="w-100">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Talla</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.talla" [disabled]="isDisabled">
-                      </mat-form-field>
+                    </mat-form-field>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
                     <h3>Diametros</h3>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Humero</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.diametro_humero" [disabled]="isDisabled">
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="w-100">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Muñeca</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.diametro_muneca" [disabled]="isDisabled">
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="w-100">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Femur</mat-label>
                         <input type="number" matInput [(ngModel)]="evaluacion.diametro_femur" [disabled]="isDisabled">
-                      </mat-form-field>
+                    </mat-form-field>
                 </div>
             </div>
             <div class="row">
@@ -67,11 +67,13 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Cresta Iliaca</mat-label>
-                        <input type="number" matInput [(ngModel)]="evaluacion.pli_cresta_iliaca" [disabled]="isDisabled">
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_cresta_iliaca"
+                            [disabled]="isDisabled">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Espina Iliaca</mat-label>
-                        <input type="number" matInput [(ngModel)]="evaluacion.pli_espina_iliaca" [disabled]="isDisabled">
+                        <input type="number" matInput [(ngModel)]="evaluacion.pli_espina_iliaca"
+                            [disabled]="isDisabled">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Abdomen</mat-label>
@@ -117,6 +119,11 @@
             <div class="row>">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
                     <p>aqui graficos de resultados</p>
+                    <p>IMC: {{imc()}}</p>
+                    <p>Grasa Corporal %: {{grasaCorporalPorcentaje()}}%</p>
+                    <p>Grasa Corporal Kg: {{grasaCorporalKg()}}kg</p>
+                    <p>Masa Muscular %: {{masaMuscularPorcentaje()}}%</p>
+                    <p>Masa Muscular Kg: {{masaMuscularKg()}}kg</p>
                 </div>
 
             </div>

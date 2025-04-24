@@ -10,8 +10,10 @@ export interface ReadUser {
   ap_paterno: string;
   ap_materno: string;
   fecha_nac: Date;
+  sexo: string;
   correo: string;
   num_celular: number;
+  rut_evaluador: string;
 }
 
 export interface CreateUser {
@@ -21,9 +23,11 @@ export interface CreateUser {
   ap_paterno: string;
   ap_materno: string;
   fecha_nac: string;
+  sexo: string;
   contrasena: string;
   correo: string;
   num_celular: number;
+  rut_evaluador: string;
   cod_rol: number;
   cod_comuna: number;
 }
@@ -59,8 +63,10 @@ export class ApiUserService {
           ap_paterno: usu[2],
           ap_materno: usu[3],
           fecha_nac: new Date(usu[4]),
-          correo: usu[5],
-          num_celular: usu[6],
+          sexo: usu[5],
+          correo: usu[6],
+          num_celular: usu[7],
+          rut_evaluador: usu[8]
         }))
       )
     );
@@ -75,8 +81,10 @@ export class ApiUserService {
         ap_paterno: res[2],
         ap_materno: res[3],
         fecha_nac: new Date(res[4]),
-        correo: res[5],
-        num_celular: res[6],
+        sexo: res[5],
+        correo: res[6],
+        num_celular: res[7],
+        rut_evaluador: res[8]
       }))
     );
   }

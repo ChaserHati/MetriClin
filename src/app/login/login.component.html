@@ -1,35 +1,32 @@
 <app-navega></app-navega>
 
 <div class="loginContenedor">
-   
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    
-        
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>correo</mat-label>
-          <input matInput placeholder="Ingresa tu usuario" formControlName="username" required>
-          <mat-icon matSuffix>person</mat-icon>
-          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-           
-          </mat-error>
-        </mat-form-field>
-      
-        
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Contraseñsssa</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" placeholder="Ingresa tu contraseña" formControlName="password" required>
-          <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
-            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-            
-          </mat-error>
-        </mat-form-field>
-      
-        <button mat-raised-button color="primary" class="full-width" type="submit">
-          Iniciar sesión
-        </button>
-      
-      </form>
-         </div>
-    
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>rut</mat-label>
+      <input matInput placeholder="Ingresa tu rut sin dv" formControlName="rutuser" required>
+      <mat-icon matSuffix>person</mat-icon>
+      <!-- <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+      </mat-error> -->
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Ingresa tu contraseña" formControlName="password"
+        required>
+      <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <!-- <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+      </mat-error> -->
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="full-width" type="submit">
+      Iniciar sesión
+    </button>
+
+  </form>
+</div>

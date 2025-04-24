@@ -47,9 +47,14 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Fecha de Nacimiento</mat-label>
-                            <input matInput [matDatepicker]="pickerNac" [(ngModel)]="picker_fecha_nac" (dateChange)="onDateChange($event)">
+                            <input matInput [matDatepicker]="pickerNac" [(ngModel)]="picker_fecha_nac"
+                                (dateChange)="onDateChange($event)">
                             <mat-datepicker-toggle matIconSuffix [for]="pickerNac"></mat-datepicker-toggle>
                             <mat-datepicker #pickerNac></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Sexo (masculino/femenino)</mat-label>
+                            <input type="text" matInput [(ngModel)]="sexo">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Contraseña</mat-label>
@@ -62,6 +67,10 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Celular</mat-label>
                             <input type="tel" matInput [(ngModel)]="num_celular">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Rut evaluador</mat-label>
+                            <input type="text" matInput [(ngModel)]="rut_evaluador">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Comuna</mat-label>

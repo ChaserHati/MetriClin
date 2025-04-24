@@ -11,27 +11,23 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TestServiceComponent } from './test-service/test-service.component';
 import { NuevopacienteComponent } from './nuevopaciente/nuevopaciente.component';
 import { VerevaluacionComponent } from './verevaluacion/verevaluacion.component';
- 
+import { AuthGuard } from './services/guards/auth.guard';
+
 export const routes: Routes = [
 
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'ficha', component: FichaComponent},
-    {path: 'historial', component: HistorialComponent},
-    {path: 'evaluacion', component: EvaluacionComponent},
-    { path: '', component: InicioComponent },        // Página de inicio
-    { path: 'login', component: LoginComponent },    // Página de login
-    { path: 'registro', component: RegistroComponent }, // Página de registro
-
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'ficha', component: FichaComponent },
-    { path: 'ficha/:id', component: FichaComponent },
-    { path: 'historial', component: HistorialComponent },
-    { path: 'historial/:id', component: HistorialComponent },
-    { path: 'evaluacion', component: EvaluacionComponent },
-    { path: 'evaluacion/:id', component: EvaluacionComponent },
-    { path: 'verevaluacion', component: VerevaluacionComponent},
-    { path: 'verevaluacion/:id', component: VerevaluacionComponent},
-    { path: 'nuevopaciente', component: NuevopacienteComponent},
+    { path: '', component: InicioComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'registro', component: RegistroComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'ficha', component: FichaComponent, canActivate: [AuthGuard] },
+    { path: 'ficha/:id', component: FichaComponent, canActivate: [AuthGuard] },
+    { path: 'historial', component: HistorialComponent, canActivate: [AuthGuard] },
+    { path: 'historial/:id', component: HistorialComponent, canActivate: [AuthGuard] },
+    { path: 'evaluacion', component: EvaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'evaluacion/:id', component: EvaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'verevaluacion', component: VerevaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'verevaluacion/:id', component: VerevaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
 
     { path: 'test-service', component: TestServiceComponent },
 ];

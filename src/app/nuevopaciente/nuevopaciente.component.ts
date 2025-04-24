@@ -16,44 +16,48 @@ import { DatePipe } from '@angular/common';
   selector: 'app-nuevopaciente',
   imports: [MatIconModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, MatButtonModule],
   templateUrl: './nuevopaciente.component.html',
-  providers: [provideNativeDateAdapter(),DatePipe
+  providers: [provideNativeDateAdapter(), DatePipe
   ],
   styleUrl: './nuevopaciente.component.css'
 })
 export class NuevopacienteComponent {
 
-  rut: string='';
-  dv_rut: string='';
-  nombre: string  = '';
+  rut: string = '';
+  dv_rut: string = '';
+  nombre: string = '';
   ap_paterno: string = '';
   ap_materno: string = '';
-  picker_fecha_nac: Date|null = null;
+  picker_fecha_nac: Date | null = null;
   fecha_nac: string = '';
+  sexo: string = ''
   contrasena: string = '';
   correo: string = '';
-  num_celular: number|null=null;
-  cod_comuna: number|null=null;
+  rut_evaluador: string = '';
+  num_celular: number | null = null;
+  cod_comuna: number | null = null;
 
-  constructor(private apiUserService:ApiUserService, private datePipe:DatePipe){}
+  constructor(private apiUserService: ApiUserService, private datePipe: DatePipe) { }
 
-  setUser(){
-    const newUser:CreateUser={
+  setUser() {
+    const newUser: CreateUser = {
       rut: this.rut,
       dv_rut: this.dv_rut,
       nombre: this.nombre,
       ap_paterno: this.ap_paterno,
       ap_materno: this.ap_materno,
       fecha_nac: this.fecha_nac,
+      sexo: this.sexo,
       contrasena: this.contrasena,
       correo: this.correo,
       num_celular: this.num_celular ?? 0,
+      rut_evaluador: this.rut_evaluador,
       cod_rol: 0,
       cod_comuna: this.cod_comuna ?? 0,
     }
     return newUser;
   }
 
-  testUsuarioCreado(){
+  testUsuarioCreado() {
     console.log("Usuario creado: ", this.setUser());
   }
 
@@ -69,12 +73,12 @@ export class NuevopacienteComponent {
   }
   //---
   onDateChange(event: any) {
-    console.log("Confirmando fecha: ",this.picker_fecha_nac)
+    console.log("Confirmando fecha: ", this.picker_fecha_nac)
     if (this.picker_fecha_nac instanceof Date) {
-      console.log("Confirmando que es tipo Date:",this.picker_fecha_nac instanceof Date)
+      console.log("Confirmando que es tipo Date:", this.picker_fecha_nac instanceof Date)
       const fecha_con_pipe = this.formatDate(this.picker_fecha_nac);
-      if(fecha_con_pipe!==null) {
-        console.log("Confirmando que no es null:",fecha_con_pipe!==null)
+      if (fecha_con_pipe !== null) {
+        console.log("Confirmando que no es null:", fecha_con_pipe !== null)
         this.fecha_nac = fecha_con_pipe;
         console.log("Fecha despues del pipe: ", this.fecha_nac);
       }

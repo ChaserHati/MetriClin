@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  constructor(private apiUserService: ApiUserService, private router:Router) { } //inicializa el servicio
+  constructor(private apiUserService: ApiUserService, private router: Router) { } //inicializa el servicio
 
   usuarios: ReadUser[] = []; //variable que contendra los datos
 
@@ -29,9 +29,11 @@ export class DashboardComponent {
       ap_paterno: 'Desde',
       ap_materno: 'Front',
       fecha_nac: '05-05-2025',
+      sexo: 'masculino',
       contrasena: 'string123',
       correo: 'testing@gmail.com',
       num_celular: 987687687,
+      rut_evaluador: '15123123',
       cod_rol: 3,
       cod_comuna: 1
     }
@@ -53,10 +55,10 @@ export class DashboardComponent {
     });
   }
 
-  ir_a_paciente(rut:string){
-    this.router.navigate(['/ficha',rut]);
+  ir_a_paciente(rut: string) {
+    this.router.navigate(['/ficha', rut]);
   }
-  ir_a_nuevo_paciente(){
+  ir_a_nuevo_paciente() {
     this.router.navigate(['/nuevopaciente']);
   }
 
