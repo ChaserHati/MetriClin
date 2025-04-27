@@ -116,14 +116,29 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="row>">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-center">
                     <p>aqui graficos de resultados</p>
                     <p>IMC: {{imc()}}</p>
                     <p>Grasa Corporal %: {{grasaCorporalPorcentaje()}}%</p>
                     <p>Grasa Corporal Kg: {{grasaCorporalKg()}}kg</p>
                     <p>Masa Muscular %: {{masaMuscularPorcentaje()}}%</p>
                     <p>Masa Muscular Kg: {{masaMuscularKg()}}kg</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <canvasjs-chart [options]="chart_imc" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <canvasjs-chart [options]="chart_kg" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <canvasjs-chart [options]="chart_perc" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <canvasjs-chart [options]="chart_perimetro" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
+                    <canvasjs-chart [options]="chart_pliegue" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
                 </div>
 
             </div>
