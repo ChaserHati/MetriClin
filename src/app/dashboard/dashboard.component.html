@@ -1,24 +1,9 @@
 <mat-sidenav-container class="vh-100">
+
     <mat-sidenav mode="side" opened>
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
-                    <button mat-fab extended>
-                        <mat-icon>person_search</mat-icon>
-                        Pacientes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>bar_chart</mat-icon>
-                        Informes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>settings</mat-icon>
-                        Config
-                    </button>
-                </div>
-            </div>
-        </div>
+        <app-navmenu></app-navmenu>
     </mat-sidenav>
+
     <mat-sidenav-content class="">
         <div class="container-fluid vh-100">
             <div class="row h-100">
@@ -33,7 +18,8 @@
                             </mat-form-field>
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 text-center">
-                            <button mat-flat-button class="w-100" (click)="ir_a_nuevo_paciente()">Nuevo Paciente</button>
+                            <button mat-flat-button class="w-100" (click)="ir_a_nuevo_paciente()">Nuevo
+                                Paciente</button>
                         </div>
                     </div>
                     <div class="row my-3 h-50">

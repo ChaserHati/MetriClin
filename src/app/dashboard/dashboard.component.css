@@ -8,7 +8,8 @@ mat-card-actions {
     /* Pushes the actions section to the bottom */
     align-self: center;
 }
+
 .mat-sidenav {
     background-color: #00B2FF;
     color: white
-  }
+}

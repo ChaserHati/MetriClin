@@ -14,6 +14,7 @@ export interface CreateFicha {
   fecha_prox_sesion: string;
 }
 export interface ReadFicha {
+  rut: string;
   descripcion: string;
   diagnostico: string;
   objetivo: string;
@@ -44,12 +45,13 @@ export class ApiFichaService {
   getFichaByRut(rut: string): Observable<ReadFicha> {
     return this.http.get<any[]>(`${this.apiUrl}/${rut}`).pipe(
       map(res => ({
-        descripcion: res[0],
-        diagnostico: res[1],
-        objetivo: res[2],
-        tratamiento: res[3],
-        fecha_ingreso: res[4],
-        fecha_prox_sesion: res[5],
+        rut: res[0],
+        descripcion: res[1],
+        diagnostico: res[2],
+        objetivo: res[3],
+        tratamiento: res[4],
+        fecha_ingreso: res[5],
+        fecha_prox_sesion: res[6],
       }))
     )
   }

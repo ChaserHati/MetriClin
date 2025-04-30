@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { LogoMetriclinComponent } from '../logo/logo.component';
-
 import { NavegaComponent } from '../navega/navega.component';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
-  standalone: true, 
-  imports: [LogoMetriclinComponent, NavegaComponent,CommonModule], // Importando otros componentes
+  standalone: true,
+  imports: [LogoMetriclinComponent, NavegaComponent, CommonModule],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })

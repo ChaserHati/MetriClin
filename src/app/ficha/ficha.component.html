@@ -74,12 +74,18 @@
       </div>
       <div class="row my-3">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <button mat-flat-button class="w-100">Nueva Evaluación</button>
+          <button mat-flat-button class="w-100" (click)="guardarFicha()">Guardar</button>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <button mat-flat-button class="w-100" (click)="navEvaluacion()">Nueva Evaluación</button>
         </div>
       </div>
       <div class="row my-3">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div *ngFor="let eval of evaluaciones" class="border rounded-4 px-3 py-2 d-flex justify-content-between align-items-center">
+          <div *ngFor="let eval of evaluaciones"
+            class="border rounded-4 px-3 py-2 d-flex justify-content-between align-items-center">
             <span></span>
             <div class="d-flex align-items-center gap-2">
               <button mat-flat-button (click)="ir_a_evaluacion(rut,eval.nro_evaluacion)">Ver Evaluación</button>
@@ -95,7 +101,8 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg vh-100 d-flex flex-column justify-content-evenly align-items-center">
+    <div
+      class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg vh-100 d-flex flex-column justify-content-evenly align-items-center">
       <!-- mitad derecha -->
       <canvas id="canvas1" class="w-55 bg-light" style="height: 250px;"></canvas>
       <canvas id="canvas2" class="w-55 bg-light" style="height: 250px;"></canvas>

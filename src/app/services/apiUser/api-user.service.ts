@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 export interface ReadUser {
   rut: string;
   nombre: string;
@@ -24,7 +25,7 @@ export interface CreateUser {
   ap_materno: string;
   fecha_nac: string;
   sexo: string;
-  contrasena: string;
+  password: string;
   correo: string;
   num_celular: number;
   rut_evaluador: string;
@@ -37,7 +38,7 @@ export interface UpdateUser {
   ap_paterno: string;
   ap_materno: string;
   fecha_nac: string;
-  contrasena: string;
+  password: string;
   correo: string;
   num_celular: number;
 }
@@ -54,8 +55,8 @@ export class ApiUserService {
   constructor() { }
 
 
-  getUsers(): Observable<ReadUser[]> {
-    return this.http.get<any[][]>(this.apiUrl).pipe(
+  getUsers(rutev: string): Observable<ReadUser[]> {
+    return this.http.get<any[][]>(`${this.apiUrl}/${rutev}`).pipe(
       map(res =>
         res.map(usu => ({
           rut: usu[0],
@@ -73,8 +74,8 @@ export class ApiUserService {
   }
 
 
-  getUserByRut(rut: string): Observable<ReadUser> {
-    return this.http.get<any[]>(`${this.apiUrl}/${rut}`).pipe(
+  getUserByRut(rutev: string, rut: string): Observable<ReadUser> {
+    return this.http.get<any[]>(`${this.apiUrl}/${rutev}/${rut}`).pipe(
       map(res => ({
         rut: res[0],
         nombre: res[1],

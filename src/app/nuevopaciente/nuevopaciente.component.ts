@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,14 +6,24 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ApiUserService, CreateUser } from '../services/apiUser/api-user.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { NavmenuComponent } from '../components/navmenu/navmenu.component';
 
 @Component({
   selector: 'app-nuevopaciente',
-  imports: [MatIconModule, MatSidenavModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, FormsModule, MatButtonModule],
+  imports: [MatIconModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatButtonModule,
+    MatSelectModule,
+    NavmenuComponent],
   templateUrl: './nuevopaciente.component.html',
   providers: [provideNativeDateAdapter(), DatePipe
   ],
@@ -30,13 +39,12 @@ export class NuevopacienteComponent {
   picker_fecha_nac: Date | null = null;
   fecha_nac: string = '';
   sexo: string = ''
-  contrasena: string = '';
+  password: string = '';
   correo: string = '';
-  rut_evaluador: string = '';
+  rut_evaluador: string = localStorage.getItem('rutuser') ?? '';
   num_celular: number | null = null;
-  cod_comuna: number | null = null;
 
-  constructor(private apiUserService: ApiUserService, private datePipe: DatePipe) { }
+  constructor(private apiUserService: ApiUserService, private datePipe: DatePipe, private router: Router) { }
 
   setUser() {
     const newUser: CreateUser = {
@@ -47,12 +55,12 @@ export class NuevopacienteComponent {
       ap_materno: this.ap_materno,
       fecha_nac: this.fecha_nac,
       sexo: this.sexo,
-      contrasena: this.contrasena,
+      password: this.password,
       correo: this.correo,
       num_celular: this.num_celular ?? 0,
       rut_evaluador: this.rut_evaluador,
-      cod_rol: 0,
-      cod_comuna: this.cod_comuna ?? 0,
+      cod_rol: 3,
+      cod_comuna: 1,
     }
     return newUser;
   }
@@ -64,7 +72,8 @@ export class NuevopacienteComponent {
   crearUsuario() {
     this.apiUserService.createUser(this.setUser()).subscribe({
       next: respuesta => {
-        console.log('Usuario creado:', respuesta);
+        alert('Usuario paciente creado');
+        this.router.navigate(['/dashboard']);
       },
       error: error => {
         console.error('Error al crear usuario:', error);

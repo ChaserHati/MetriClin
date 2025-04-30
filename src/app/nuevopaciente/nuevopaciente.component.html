@@ -1,23 +1,6 @@
 <mat-sidenav-container class="vh-100">
     <mat-sidenav mode="side" opened>
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
-                    <button mat-fab extended>
-                        <mat-icon>person_search</mat-icon>
-                        Pacientes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>bar_chart</mat-icon>
-                        Informes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>settings</mat-icon>
-                        Config
-                    </button>
-                </div>
-            </div>
-        </div>
+        <app-navmenu></app-navmenu>
     </mat-sidenav>
     <mat-sidenav-content class="">
         <div class="container-fluid vh-100">
@@ -52,13 +35,20 @@
                             <mat-datepicker-toggle matIconSuffix [for]="pickerNac"></mat-datepicker-toggle>
                             <mat-datepicker #pickerNac></mat-datepicker>
                         </mat-form-field>
-                        <mat-form-field appearance="outline" class="w-100">
+                        <!-- <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Sexo (masculino/femenino)</mat-label>
                             <input type="text" matInput [(ngModel)]="sexo">
+                        </mat-form-field> -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Sexo</mat-label>
+                            <mat-select [(ngModel)]="sexo">
+                                <mat-option value="masculino">Masculino</mat-option>
+                                <mat-option value="femenino">Femenino</mat-option>
+                            </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Contraseña</mat-label>
-                            <input type="password" matInput [(ngModel)]="contrasena">
+                            <input type="password" matInput [(ngModel)]="password">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Correo Electronico</mat-label>
@@ -67,14 +57,6 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Celular</mat-label>
                             <input type="tel" matInput [(ngModel)]="num_celular">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Rut evaluador</mat-label>
-                            <input type="text" matInput [(ngModel)]="rut_evaluador">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Comuna</mat-label>
-                            <input type="text" matInput [(ngModel)]="cod_comuna">
                         </mat-form-field>
                         <button mat-flat-button class="w-100" (click)="crearUsuario()">Crear Usuario</button>
                         <!--cambiar la funcion del boton por la funcion de la api-->

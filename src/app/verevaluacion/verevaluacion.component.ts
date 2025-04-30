@@ -20,6 +20,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 export class VerevaluacionComponent {
   //definimos objetos que contendran los datos
   rut: string = '';
+  rutev: string = '';
   nro: number = 1;
   user: ReadUser = {
     rut: '',
@@ -109,52 +110,54 @@ export class VerevaluacionComponent {
 
   //codigo de graficos
 
-  chart_imc:any;
-  chart_kg:any;
-  chart_perc:any;
-  chart_perimetro:any;
-  chart_pliegue:any;
+  chart_imc: any;
+  chart_kg: any;
+  chart_perc: any;
+  chart_perimetro: any;
+  chart_pliegue: any;
 
-  generate_imc_chart(imc:number){
-    return{
+  generate_imc_chart(imc: number) {
+    return {
       animationEnabled: true,
-    theme: "light2",
-    title: {
+      theme: "light2",
+      title: {
         text: "IMC"
-    },
-    axisX: {
-      labelFormatter: () => " ",
-      tickLength: 0,
-      lineThickness: 0
-    },
-    axisY: {
+      },
+      axisX: {
+        labelFormatter: () => " ",
+        tickLength: 0,
+        lineThickness: 0
+      },
+      axisY: {
         interval: 5,
-    }, 
-    data: [
-      {
-        type: "rangeBar",
-        dataPoints: [
-          { x: 0, y:[0, 18.4], label: "Bajo Peso",color: "#00BFFF"},
-          { x: 0, y:[18.5, 24.9], label: "Normal", color: "#32CD32"},
-          { x: 0, y:[25, 29.9], label: "Sobrepeso", color: "#FFD700"},
-          { x: 0, y:[30, 34.9], label: "Obeso I", color: "#FF8C00"},
-          { x: 0, y:[35, 40], label: "Obeso II", color: "#FF4500"},
-        ]
-    },
-    {
-      type: "rangeBar",
-      dataPoints: [
-        { x: 0, y:[ imc-0.5, imc+0.5  ], label: "IMC",indexLabel: "⯅",color: "#000000",toolTipContent: `IMC: ${imc.toFixed(1)}`},
-      ]}]}
+      },
+      data: [
+        {
+          type: "rangeBar",
+          dataPoints: [
+            { x: 0, y: [0, 18.4], label: "Bajo Peso", color: "#00BFFF" },
+            { x: 0, y: [18.5, 24.9], label: "Normal", color: "#32CD32" },
+            { x: 0, y: [25, 29.9], label: "Sobrepeso", color: "#FFD700" },
+            { x: 0, y: [30, 34.9], label: "Obeso I", color: "#FF8C00" },
+            { x: 0, y: [35, 40], label: "Obeso II", color: "#FF4500" },
+          ]
+        },
+        {
+          type: "rangeBar",
+          dataPoints: [
+            { x: 0, y: [imc - 0.5, imc + 0.5], label: "IMC", indexLabel: "⯅", color: "#000000", toolTipContent: `IMC: ${imc.toFixed(1)}` },
+          ]
+        }]
+    }
   }
 
-  generate_chart_kg(masa_muscular_kg:number,grasa_corporal_kg:number,peso_kg:number){
-    return{
-      title:{
-        text: "Componentes Corporales (KG)"  
+  generate_chart_kg(masa_muscular_kg: number, grasa_corporal_kg: number, peso_kg: number) {
+    return {
+      title: {
+        text: "Componentes Corporales (KG)"
       },
       animationEnabled: true,
-      data: [{        
+      data: [{
         type: "column",
         dataPoints: [
           { x: 10, y: masa_muscular_kg, label: 'Masa Muscular (kg)' },
@@ -165,31 +168,31 @@ export class VerevaluacionComponent {
     }
   }
 
-  generate_chart_perc(mm:number,gc:number,oc:number){
-    return{
+  generate_chart_perc(mm: number, gc: number, oc: number) {
+    return {
       animationEnabled: true,
       title: {
-      text: "Componentes Corporales (%)"
+        text: "Componentes Corporales (%)"
       },
       data: [{
-      type: "pie",
-      startAngle: -90,
-      indexLabel: "{name}: {y}",
-      yValueFormatString: "#,###.##'%'",
-      dataPoints: [
-        { y: mm, name: "Masa Muscular (%)" },
-        { y: gc, name: "Grasa Corporal (%)" },
-        { y: oc, name: "Otros Componentes (%)" },
-      ]
+        type: "pie",
+        startAngle: -90,
+        indexLabel: "{name}: {y}",
+        yValueFormatString: "#,###.##'%'",
+        dataPoints: [
+          { y: mm, name: "Masa Muscular (%)" },
+          { y: gc, name: "Grasa Corporal (%)" },
+          { y: oc, name: "Otros Componentes (%)" },
+        ]
       }]
     }
   }
 
-  generate_chart_perimetro(eval1:ReadEvaluacion, eval2:ReadEvaluacion){
-    return{
+  generate_chart_perimetro(eval1: ReadEvaluacion, eval2: ReadEvaluacion) {
+    return {
       animationEnabled: true,
-      title:{
-      text: "Perimetros (cm)"    
+      title: {
+        text: "Perimetros (cm)"
       },
       axisY: {
         includeZero: true,
@@ -197,24 +200,24 @@ export class VerevaluacionComponent {
       legend: {
         cursor: "pointer",
       },
-      data: [{        
+      data: [{
         type: "bar",
-        name: "Evaluacion Previa",  
-        showInLegend: true, 
-        dataPoints: [      
-        { y: eval1.per_brazo, label: "Brazo Relajado" },
-        { y: eval1.per_brazo_flex, label: "Brazo Flexionado" },
-        { y: eval1.per_cintura, label: "Cintura" },
-        { y: eval1.per_cadera, label: "Cadera" },
-        { y: eval1.per_muslo, label: "Muslo" },
-        { y: eval1.per_pantorrilla, label: "Pantorrilla" }
+        name: "Evaluacion Previa",
+        showInLegend: true,
+        dataPoints: [
+          { y: eval1.per_brazo, label: "Brazo Relajado" },
+          { y: eval1.per_brazo_flex, label: "Brazo Flexionado" },
+          { y: eval1.per_cintura, label: "Cintura" },
+          { y: eval1.per_cadera, label: "Cadera" },
+          { y: eval1.per_muslo, label: "Muslo" },
+          { y: eval1.per_pantorrilla, label: "Pantorrilla" }
         ]
       },
-        {        
+      {
         type: "bar",
         name: "Evaluacion Actual",
         showInLegend: true,
-        dataPoints: [      
+        dataPoints: [
           { y: eval2.per_brazo, label: "Brazo Relajado" },
           { y: eval2.per_brazo_flex, label: "Brazo Flexionado" },
           { y: eval2.per_cintura, label: "Cintura" },
@@ -226,52 +229,52 @@ export class VerevaluacionComponent {
     }
   }
 
-  generate_chart_pliegue(eval1:ReadEvaluacion, eval2:ReadEvaluacion){
-    return{
+  generate_chart_pliegue(eval1: ReadEvaluacion, eval2: ReadEvaluacion) {
+    return {
       animationEnabled: true,
-	  title: {
-		text: "Pliegues (mm)"
-	  },
-	  axisX: {
-		labelAngle: -90
-	  },
-	  axisY: {
-	  },
-	  toolTip: {
-		shared: true
-	  },
-	  legend:{
-		cursor:"pointer",
-	  },
-	  data: [{
-	    type: "column",	
-	    name: "Evaluacion Previa",
-	    showInLegend: true, 
-	    dataPoints:[
-	  	  {label: "Bicipital", y: eval1.pli_bicipital},
-	  	  {label: "Tricipital", y: eval1.pli_tricipital},
-	  	  {label: "Subescapular", y: eval1.pli_subescapular},
-	  	  {label: "Cresta Illiaca", y: eval1.pli_cresta_iliaca},
-	  	  {label: "Espina Iliaca", y: eval1.pli_espina_iliaca},
-	  	  {label: "Abdomen", y: eval1.pli_abdominal},
-	  	  {label: "Muslo", y: eval1.pli_muslo},
-	  	  {label: "Pantorrilla", y: eval1.pli_pantorrilla},
-	  ]
-	  }, {
-	    type: "column",	
-	    name: "Evaluacion Actual",
-	    showInLegend: true,
-	    dataPoints:[
-	  	  {label: "Bicipital", y: eval2.pli_bicipital},
-	  	  {label: "Tricipital", y: eval2.pli_tricipital},
-	  	  {label: "Subescapular", y: eval2.pli_subescapular},
-	  	  {label: "Cresta Illiaca", y: eval2.pli_cresta_iliaca},
-	  	  {label: "Espina Iliaca", y: eval2.pli_espina_iliaca},
-	  	  {label: "Abdomen", y: eval2.pli_abdominal},
-	  	  {label: "Muslo", y: eval2.pli_muslo},
-	  	  {label: "Pantorrilla", y: eval2.pli_pantorrilla},
-	    ]
-    }]
+      title: {
+        text: "Pliegues (mm)"
+      },
+      axisX: {
+        labelAngle: -90
+      },
+      axisY: {
+      },
+      toolTip: {
+        shared: true
+      },
+      legend: {
+        cursor: "pointer",
+      },
+      data: [{
+        type: "column",
+        name: "Evaluacion Previa",
+        showInLegend: true,
+        dataPoints: [
+          { label: "Bicipital", y: eval1.pli_bicipital },
+          { label: "Tricipital", y: eval1.pli_tricipital },
+          { label: "Subescapular", y: eval1.pli_subescapular },
+          { label: "Cresta Illiaca", y: eval1.pli_cresta_iliaca },
+          { label: "Espina Iliaca", y: eval1.pli_espina_iliaca },
+          { label: "Abdomen", y: eval1.pli_abdominal },
+          { label: "Muslo", y: eval1.pli_muslo },
+          { label: "Pantorrilla", y: eval1.pli_pantorrilla },
+        ]
+      }, {
+        type: "column",
+        name: "Evaluacion Actual",
+        showInLegend: true,
+        dataPoints: [
+          { label: "Bicipital", y: eval2.pli_bicipital },
+          { label: "Tricipital", y: eval2.pli_tricipital },
+          { label: "Subescapular", y: eval2.pli_subescapular },
+          { label: "Cresta Illiaca", y: eval2.pli_cresta_iliaca },
+          { label: "Espina Iliaca", y: eval2.pli_espina_iliaca },
+          { label: "Abdomen", y: eval2.pli_abdominal },
+          { label: "Muslo", y: eval2.pli_muslo },
+          { label: "Pantorrilla", y: eval2.pli_pantorrilla },
+        ]
+      }]
     }
   }
 
@@ -287,11 +290,12 @@ export class VerevaluacionComponent {
     this.route.queryParamMap.subscribe(params => {
       this.rut = params.get('id') ?? '10123123';
       this.nro = Number(params.get('nro') ?? 1)
+      this.rutev = localStorage.getItem('rutser') ?? '';
     });
     this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut, this.nro).subscribe((evaluacion: ReadEvaluacion) => {
       this.evaluacion = evaluacion;
     })
-    this.apiUserService.getUserByRut(this.rut).subscribe((user: ReadUser) => {
+    this.apiUserService.getUserByRut(this.rutev, this.rut).subscribe((user: ReadUser) => {
       this.user = user;
     })
     this.imc();
@@ -301,8 +305,8 @@ export class VerevaluacionComponent {
     this.masaMuscularPorcentaje();
 
     this.chart_imc = this.generate_imc_chart(this.imc());
-    this.chart_kg = this.generate_chart_kg(this.masaMuscularKg(),this.grasaCorporalKg(),this.evaluacion.peso);
-    this.chart_perc = this.generate_chart_perc(this.masaMuscularPorcentaje(),this.grasaCorporalPorcentaje(),100-this.masaMuscularPorcentaje()-this.grasaCorporalPorcentaje());
+    this.chart_kg = this.generate_chart_kg(this.masaMuscularKg(), this.grasaCorporalKg(), this.evaluacion.peso);
+    this.chart_perc = this.generate_chart_perc(this.masaMuscularPorcentaje(), this.grasaCorporalPorcentaje(), 100 - this.masaMuscularPorcentaje() - this.grasaCorporalPorcentaje());
     // this.chart_perimetro = this.generate_chart_perimetro(insertar evaluacion previa, this.evaluacion);
     // this.chart_pliegue = this.generate_chart_perimetro(insertar evaluacion previa, this.evaluacion);
   }

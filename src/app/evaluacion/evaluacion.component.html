@@ -2,34 +2,37 @@
     <div class="row align-items-center h-100">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <h1 class="text-left custom-primary-txt">Evaluación</h1>
-                <div class="row">
+            <div class="row">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Fecha de Evaluación</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="picker_fecha_eval">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="col">
                     <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Fecha de Evaluación</mat-label>
-                        <input matInput [matDatepicker]="picker" [(ngModel)]="picker_fecha_eval">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>
-                    <div class="col">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Peso</mat-label>
-                            <input matInput [(ngModel)]="peso" type="number">
-                        </mat-form-field>
-                    </div>
-                    <div class="col">
-                        <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Peso</mat-label>
+                        <input matInput [(ngModel)]="peso" type="number">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Talla</mat-label>
                         <input matInput [(ngModel)]="talla" type="number">
-                        </mat-form-field>
-                    </div>
+                    </mat-form-field>
                 </div>
-                <div class="row justify-content-center g-2">
-                        <button mat-flat-button class="half" data-bs-toggle="modal" data-bs-target="#pliegueModal">Pliegues</button>
-                        <button mat-flat-button class="half" data-bs-toggle="modal" data-bs-target="#perimetroModal">Perímetros</button>
-                        <button mat-flat-button class="half" data-bs-toggle="modal" data-bs-target="#diametroModal">Diametros</button>
-                </div>
-                <div class="row my-3">
-                    <button mat-flat-button>Guardar Datos</button>
-                </div>
+            </div>
+            <div class="row justify-content-center g-2">
+                <button mat-flat-button class="half" data-bs-toggle="modal"
+                    data-bs-target="#pliegueModal">Pliegues</button>
+                <button mat-flat-button class="half" data-bs-toggle="modal"
+                    data-bs-target="#perimetroModal">Perímetros</button>
+                <button mat-flat-button class="half" data-bs-toggle="modal"
+                    data-bs-target="#diametroModal">Diametros</button>
+            </div>
+            <div class="row my-3">
+                <button mat-flat-button (click)="crearEvaluacion()">Guardar Datos</button>
+            </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <div class="row">
@@ -39,11 +42,11 @@
                 </mat-form-field>
             </div>
             <div class="row">
-            <mat-form-field appearance="outline" class="w-100 h-100">
-                <mat-label>Tratamiento</mat-label>
-                <textarea matInput></textarea>
-            </mat-form-field>
-            </div>  
+                <mat-form-field appearance="outline" class="w-100 h-100">
+                    <mat-label>Tratamiento</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </div>
         </div>
     </div>
 </div>
@@ -61,37 +64,37 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Bicipital</mat-label>
                             <input matInput [(ngModel)]="plBicipital" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Tricipital</mat-label>
                             <input matInput [(ngModel)]="plTricipital" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Subescapular</mat-label>
                             <input matInput [(ngModel)]="plSubescapular" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Cresta Iliaca</mat-label>
                             <input matInput [(ngModel)]="plCrestaIliaca" type="number">
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Espina Iliaca</mat-label>
                             <input matInput [(ngModel)]="plEspinaIliaca" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Abdominal</mat-label>
                             <input matInput [(ngModel)]="plAbdominal" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Muslo</mat-label>
                             <input matInput [(ngModel)]="plMuslo" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Pantorrilla</mat-label>
                             <input matInput [(ngModel)]="plPantorrilla" type="number">
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                 </div>
             </div>
@@ -111,29 +114,29 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Brazo</mat-label>
                             <input matInput [(ngModel)]="perBrazo" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Brazo Flexionado</mat-label>
                             <input matInput [(ngModel)]="perBrazoFlex" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Cintura</mat-label>
                             <input matInput [(ngModel)]="perCintura" type="number">
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                     <div class="col-md-6">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Cadera</mat-label>
                             <input matInput [(ngModel)]="perCadera" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Muslo</mat-label>
                             <input matInput [(ngModel)]="perMuslo" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Pantorrilla</mat-label>
                             <input matInput [(ngModel)]="perPantorrilla" type="number">
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                 </div>
             </div>
@@ -153,15 +156,15 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Humero</mat-label>
                             <input matInput [(ngModel)]="diaHumero" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Muñeca</mat-label>
                             <input matInput [(ngModel)]="diaMuneca" type="number">
-                          </mat-form-field>
-                          <mat-form-field appearance="outline" class="w-100">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Femur</mat-label>
                             <input matInput [(ngModel)]="diaFemur" type="number">
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                 </div>
             </div>

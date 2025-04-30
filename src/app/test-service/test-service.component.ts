@@ -29,7 +29,8 @@ export class TestServiceComponent {
     private apiUserService: ApiUserService) { }
 
   //definimos algunas variables que - por el momento - serviran como argumento de las funciones
-  rut: string = '15123123';
+  rut: string = '10123123';
+  rutev: string = '15123123';
   nroEvaluacion: number = 1;
 
 
@@ -48,7 +49,7 @@ export class TestServiceComponent {
     ap_materno: 'Perez',
     fecha_nac: '05-05-1995',
     sexo: 'masculino',
-    contrasena: 'string123',
+    password: 'string123',
     correo: 'pedro@gmail.com',
     num_celular: 987687687,
     rut_evaluador: '',
@@ -153,6 +154,7 @@ export class TestServiceComponent {
     rut_evaluador: ''
   }
   ficha: ReadFicha = {
+    rut: '',
     descripcion: '',
     diagnostico: '',
     objetivo: '',
@@ -192,11 +194,11 @@ export class TestServiceComponent {
   //ejecutamos los métodos para obtener usuario, ficha y evaluación inmediatamente cuando se inicializa el componente
   ngOnInit() {
     //obtener un usuario - argumento: rut
-    this.apiUserService.getUserByRut(this.rut).subscribe((user: ReadUser) => {
+    this.apiUserService.getUserByRut(this.rutev, this.rut).subscribe((user: ReadUser) => {
       this.user = user;
     });
     //obtener todos los usuarios - no necesita argumento
-    this.apiUserService.getUsers().subscribe(user => {
+    this.apiUserService.getUsers(this.rutev).subscribe(user => {
       this.users = user;
     });
     //obtener ficha clinica - argumento: rut
@@ -226,7 +228,7 @@ export class TestServiceComponent {
     ap_paterno: 'Gonzalez',
     ap_materno: 'Perez',
     fecha_nac: '05-05-1995',
-    contrasena: 'string123',
+    password: 'string123',
     correo: 'kevin@gmail.com',
     num_celular: 987687687
   }

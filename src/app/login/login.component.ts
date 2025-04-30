@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavegaComponent } from '../navega/navega.component';
 import { MatError } from '@angular/material/form-field';
 import { AuthService } from '../services/apiAuth/auth.service';
+import { Router } from '@angular/router';
+
+
 
 interface TokenResponse {
   token: string;
@@ -27,7 +30,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   hide = true; // Para mostrar/ocultar contraseña
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       rutuser: ['', Validators.required],
       password: ['', Validators.required]
@@ -45,6 +48,8 @@ export class LoginComponent {
       this.authService.login(infoauth).subscribe({
         next: (res) => {
           this.authService.saveToken(res.token);
+          localStorage.setItem('rutuser', rutuser);
+          this.router.navigate(['/dashboard']);
           console.log('Usuario autenticado, la respuesta es:', res.token);
         },
         error: error => {
