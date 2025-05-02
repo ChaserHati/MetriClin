@@ -9,6 +9,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { ApiEvaluacionService, CreateEvaluacion } from '../services/apiEvaluacion/api-evaluacion.service';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { NavmenuComponent } from '../components/navmenu/navmenu.component';
 
 @Component({
   selector: 'app-evaluacion',
@@ -19,7 +23,11 @@ import { ApiEvaluacionService, CreateEvaluacion } from '../services/apiEvaluacio
     MatButtonModule,
     MatFormFieldModule,
     MatDatepickerModule,
-  ],
+    MatToolbarModule,
+    MatSidenavModule,
+    NavmenuComponent,
+    MatIconModule
+],
   templateUrl: './evaluacion.component.html',
   providers: [provideNativeDateAdapter(), DatePipe],
   styleUrl: './evaluacion.component.css'
@@ -134,5 +142,8 @@ export class EvaluacionComponent {
     console.log("convertiendo Date a string")
     return this.datePipe.transform(date, 'dd-MM-yyyy');
   }
-  //---
+  
+  nav_ficha(){
+    this.router.navigate(['/ficha']);
+  }
 }

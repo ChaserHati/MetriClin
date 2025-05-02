@@ -188,48 +188,67 @@ export class VerevaluacionComponent {
     }
   }
 
-  generate_chart_perimetro(eval1: ReadEvaluacion, eval2: ReadEvaluacion) {
+  generate_chart_perimetro(evaluaciones: any) {
+    const etiquetas = ["Brazo Relajado", "Brazo Flexionado", "Cintura", "Cadera", "Muslo", "Pantorrilla"];
+    const campos = ["per_brazo", "per_braz_flex", "per_cintura", "per_cadera", "per_muslo", "per_pantorrilla"];
+  
+    const dataSeries = [];
+  
+    for (let i = 0; i < evaluaciones[campos[0]].length; i++) {
+      const puntos = campos.map((campo, j) => ({
+        y: evaluaciones[campo][i],
+        label: etiquetas[j]
+      }));
+  
+      dataSeries.push({
+        type: "bar",
+        name: `Evaluación ${i + 1}`,
+        showInLegend: true,
+        dataPoints: puntos
+      });
+    }
+  
     return {
       animationEnabled: true,
       title: {
-        text: "Perimetros (cm)"
+        text: "Perímetros (cm)"
       },
       axisY: {
-        includeZero: true,
+        includeZero: true
       },
       legend: {
-        cursor: "pointer",
+        cursor: "pointer"
       },
-      data: [{
-        type: "bar",
-        name: "Evaluacion Previa",
-        showInLegend: true,
-        dataPoints: [
-          { y: eval1.per_brazo, label: "Brazo Relajado" },
-          { y: eval1.per_brazo_flex, label: "Brazo Flexionado" },
-          { y: eval1.per_cintura, label: "Cintura" },
-          { y: eval1.per_cadera, label: "Cadera" },
-          { y: eval1.per_muslo, label: "Muslo" },
-          { y: eval1.per_pantorrilla, label: "Pantorrilla" }
-        ]
-      },
-      {
-        type: "bar",
-        name: "Evaluacion Actual",
-        showInLegend: true,
-        dataPoints: [
-          { y: eval2.per_brazo, label: "Brazo Relajado" },
-          { y: eval2.per_brazo_flex, label: "Brazo Flexionado" },
-          { y: eval2.per_cintura, label: "Cintura" },
-          { y: eval2.per_cadera, label: "Cadera" },
-          { y: eval2.per_muslo, label: "Muslo" },
-          { y: eval2.per_pantorrilla, label: "Pantorrilla" }
-        ]
-      }]
-    }
+      data: dataSeries
+    };
   }
-
-  generate_chart_pliegue(eval1: ReadEvaluacion, eval2: ReadEvaluacion) {
+  generate_chart_pliegue(evaluaciones: any) {
+    const etiquetas = [
+      "Bicipital", "Tricipital", "Subescapular", "Cresta Iliaca",
+      "Espina Iliaca", "Abdomen", "Muslo", "Pantorrilla"
+    ];
+  
+    const campos = [
+      "pli_bicipital", "pli_tricipital", "pli_subescapular", "pli_cresta_iliaca",
+      "pli_supraespinal", "pli_abdominal", "pli_muslo", "pli_pantorrilla"
+    ];
+  
+    const dataSeries = [];
+  
+    for (let i = 0; i < evaluaciones[campos[0]].length; i++) {
+      const puntos = campos.map((campo, j) => ({
+        y: evaluaciones[campo][i],
+        label: etiquetas[j]
+      }));
+  
+      dataSeries.push({
+        type: "column",
+        name: `Evaluación ${i + 1}`,
+        showInLegend: true,
+        dataPoints: puntos
+      });
+    }
+  
     return {
       animationEnabled: true,
       title: {
@@ -238,46 +257,16 @@ export class VerevaluacionComponent {
       axisX: {
         labelAngle: -90
       },
-      axisY: {
-      },
       toolTip: {
         shared: true
       },
       legend: {
-        cursor: "pointer",
+        cursor: "pointer"
       },
-      data: [{
-        type: "column",
-        name: "Evaluacion Previa",
-        showInLegend: true,
-        dataPoints: [
-          { label: "Bicipital", y: eval1.pli_bicipital },
-          { label: "Tricipital", y: eval1.pli_tricipital },
-          { label: "Subescapular", y: eval1.pli_subescapular },
-          { label: "Cresta Illiaca", y: eval1.pli_cresta_iliaca },
-          { label: "Espina Iliaca", y: eval1.pli_espina_iliaca },
-          { label: "Abdomen", y: eval1.pli_abdominal },
-          { label: "Muslo", y: eval1.pli_muslo },
-          { label: "Pantorrilla", y: eval1.pli_pantorrilla },
-        ]
-      }, {
-        type: "column",
-        name: "Evaluacion Actual",
-        showInLegend: true,
-        dataPoints: [
-          { label: "Bicipital", y: eval2.pli_bicipital },
-          { label: "Tricipital", y: eval2.pli_tricipital },
-          { label: "Subescapular", y: eval2.pli_subescapular },
-          { label: "Cresta Illiaca", y: eval2.pli_cresta_iliaca },
-          { label: "Espina Iliaca", y: eval2.pli_espina_iliaca },
-          { label: "Abdomen", y: eval2.pli_abdominal },
-          { label: "Muslo", y: eval2.pli_muslo },
-          { label: "Pantorrilla", y: eval2.pli_pantorrilla },
-        ]
-      }]
-    }
+      data: dataSeries
+    };
   }
-
+  
 
 
 
@@ -304,11 +293,51 @@ export class VerevaluacionComponent {
     this.masaMuscularKg();
     this.masaMuscularPorcentaje();
 
-    this.chart_imc = this.generate_imc_chart(this.imc());
-    this.chart_kg = this.generate_chart_kg(this.masaMuscularKg(), this.grasaCorporalKg(), this.evaluacion.peso);
-    this.chart_perc = this.generate_chart_perc(this.masaMuscularPorcentaje(), this.grasaCorporalPorcentaje(), 100 - this.masaMuscularPorcentaje() - this.grasaCorporalPorcentaje());
-    // this.chart_perimetro = this.generate_chart_perimetro(insertar evaluacion previa, this.evaluacion);
-    // this.chart_pliegue = this.generate_chart_perimetro(insertar evaluacion previa, this.evaluacion);
+    this.chart_imc = this.generate_imc_chart(this.imcPrueba);
+    this.chart_kg = this.generate_chart_kg(this.testChartKG.masa_muscular_kg, this.testChartKG.grasa_kg,this.testChartKG.peso);
+    this.chart_perc = this.generate_chart_perc(this.testChartPerc.porcentaje_masa_muscular, this.testChartPerc.porcentaje_grasa_corporal, this.testChartPerc.porcentaje_otros);
+    this.chart_perimetro = this.generate_chart_perimetro(this.datosEvalidacion);
+    this.chart_pliegue = this.generate_chart_perimetro(this.datosEvalidacion);
+  }
+
+  //datos de prueba
+
+  imcPrueba:number = 26;
+
+  testChartKG = {
+    peso: 65,
+    grasa_kg: 11.7,
+    masa_muscular_kg: 24.7
+  }
+
+  testChartPerc = {
+    porcentaje_masa_muscular: 38,
+    porcentaje_grasa_corporal: 18,
+    porcentaje_otros: 44
+  }
+
+  datosEvalidacion = {
+    rut: '19123123-K',
+    nombre: 'Juan Perez',
+    peso: [70, 75, 80],
+    talla: [1.70, 1.75, 1.80],
+    pli_bicipital: [10, 12, 14],
+    pli_tricipital: [12, 14, 16],
+    pli_subescapular: [14, 16, 18],
+    pli_cresta_iliaca: [16, 18, 20],
+    pli_supraespinal: [18, 20, 22],
+    pli_abdominal: [16, 18, 20],
+    pli_muslo: [18, 20, 22],
+    pli_pantorrilla: [20, 22, 24],
+    per_brazo: [30, 32, 34],
+    per_braz_flex: [32, 34, 36],
+    per_cintura: [80, 85, 90],
+    per_cadera: [90, 95, 100],
+    per_muslo: [50, 55, 60],
+    per_pantorrilla: [30, 32, 34],
+    diametro_codo: [6, 6, 6],
+    diametro_muneca: [5, 6, 6],
+    diametro_rodilla: [10, 10, 10],
   }
 
 }

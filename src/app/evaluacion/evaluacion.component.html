@@ -1,55 +1,71 @@
-<div class="container-fluid vh-100">
-    <div class="row align-items-center h-100">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <h1 class="text-left custom-primary-txt">Evaluación</h1>
-            <div class="row">
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Fecha de Evaluación</mat-label>
-                    <input matInput [matDatepicker]="picker" [(ngModel)]="picker_fecha_eval">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <div class="col">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Peso</mat-label>
-                        <input matInput [(ngModel)]="peso" type="number">
-                    </mat-form-field>
+<mat-sidenav-container class="vh-100">
+    <mat-sidenav #sidenav mode="push" closed>
+        <app-navmenu></app-navmenu>
+    </mat-sidenav>
+    <mat-sidenav-content class="">
+        <mat-toolbar class="">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon style="color: white;">menu</mat-icon>
+            </button>
+            <button mat-icon-button (click)="nav_ficha()">
+                <mat-icon style="color: white;">arrow_back</mat-icon>
+              </button>
+        </mat-toolbar>
+        <div class="container-fluid vh-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <h1 class="text-left custom-primary-txt">Evaluación</h1>
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fecha de Evaluación</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="picker_fecha_eval">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Peso</mat-label>
+                                <input matInput [(ngModel)]="peso" type="number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Talla</mat-label>
+                                <input matInput [(ngModel)]="talla" type="number">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center g-2">
+                        <button mat-flat-button class="half" data-bs-toggle="modal"
+                            data-bs-target="#pliegueModal">Pliegues</button>
+                        <button mat-flat-button class="half" data-bs-toggle="modal"
+                            data-bs-target="#perimetroModal">Perímetros</button>
+                        <button mat-flat-button class="half" data-bs-toggle="modal"
+                            data-bs-target="#diametroModal">Diametros</button>
+                    </div>
+                    <div class="row my-3">
+                        <button mat-flat-button (click)="crearEvaluacion()">Guardar Datos</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <mat-form-field appearance="outline" class="w-100">
-                        <mat-label>Talla</mat-label>
-                        <input matInput [(ngModel)]="talla" type="number">
-                    </mat-form-field>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="w-100 h-100">
+                            <mat-label>Descripcion</mat-label>
+                            <textarea matInput [(ngModel)]="descripcion"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="w-100 h-100">
+                            <mat-label>Tratamiento</mat-label>
+                            <textarea matInput></textarea>
+                        </mat-form-field>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center g-2">
-                <button mat-flat-button class="half" data-bs-toggle="modal"
-                    data-bs-target="#pliegueModal">Pliegues</button>
-                <button mat-flat-button class="half" data-bs-toggle="modal"
-                    data-bs-target="#perimetroModal">Perímetros</button>
-                <button mat-flat-button class="half" data-bs-toggle="modal"
-                    data-bs-target="#diametroModal">Diametros</button>
-            </div>
-            <div class="row my-3">
-                <button mat-flat-button (click)="crearEvaluacion()">Guardar Datos</button>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="row">
-                <mat-form-field appearance="outline" class="w-100 h-100">
-                    <mat-label>Descripcion</mat-label>
-                    <textarea matInput [(ngModel)]="descripcion"></textarea>
-                </mat-form-field>
-            </div>
-            <div class="row">
-                <mat-form-field appearance="outline" class="w-100 h-100">
-                    <mat-label>Tratamiento</mat-label>
-                    <textarea matInput></textarea>
-                </mat-form-field>
-            </div>
-        </div>
-    </div>
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
 
 <div class="modal fade" id="pliegueModal">
     <div class="modal-dialog">
@@ -96,6 +112,7 @@
                             <input matInput [(ngModel)]="plPantorrilla" type="number">
                         </mat-form-field>
                     </div>
+                    <button mat-flat-button class="w-100">Guardar</button>
                 </div>
             </div>
         </div>
@@ -138,6 +155,7 @@
                             <input matInput [(ngModel)]="perPantorrilla" type="number">
                         </mat-form-field>
                     </div>
+                    <button mat-flat-button class="w-100">Guardar</button>
                 </div>
             </div>
         </div>
@@ -165,9 +183,11 @@
                             <mat-label>Femur</mat-label>
                             <input matInput [(ngModel)]="diaFemur" type="number">
                         </mat-form-field>
+                        <button mat-flat-button class="w-100">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

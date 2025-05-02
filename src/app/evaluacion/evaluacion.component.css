@@ -2,3 +2,13 @@
     width: 51%;
     
 }
+
+.mat-sidenav {
+    background-color: #00B2FF;
+    color: white
+}
+
+.mat-toolbar {
+    background-color: #00B2FF;
+    color: white
+}
