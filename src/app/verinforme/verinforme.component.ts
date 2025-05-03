@@ -10,20 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 import { ApiEvaluacionService, ReadEvaluacionObj, ReadEvaluacionArr } from '../services/apiEvaluacion/api-evaluacion.service';
 import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { NavmenuComponent } from '../components/navmenu/navmenu.component';
-
 
 @Component({
-  selector: 'app-verevaluacion',
-  imports: [MatFormFieldModule, CommonModule, FormsModule, NavmenuComponent, MatInputModule, MatSidenavModule, MatIconModule, MatButtonModule, CanvasJSAngularChartsModule],
-  templateUrl: './verevaluacion.component.html',
-  styleUrl: './verevaluacion.component.css'
+  selector: 'app-verinforme',
+  imports: [MatFormFieldModule, CommonModule, FormsModule, MatInputModule, MatSidenavModule, MatIconModule, MatButtonModule, CanvasJSAngularChartsModule],
+  templateUrl: './verinforme.component.html',
+  styleUrl: './verinforme.component.css'
 })
-export class VerevaluacionComponent {
+export class VerinformeComponent {
   //definimos objetos que contendran los datos
   rut: string = '';
   rutev: string = '';
-  nro: number = 0;
+  nro: number = 1;
   user: ReadUser = {
     rut: '',
     nombre: '',
@@ -191,7 +189,7 @@ export class VerevaluacionComponent {
 
   generate_chart_perimetro(evaluaciones: any) {
     const etiquetas = ["Brazo Relajado", "Brazo Flexionado", "Cintura", "Cadera", "Muslo", "Pantorrilla"];
-    const campos = ["per_brazo", "per_brazo_flex", "per_cintura", "per_cadera", "per_muslo", "per_pantorrilla"];
+    const campos = ["per_brazo", "per_braz_flex", "per_cintura", "per_cadera", "per_muslo", "per_pantorrilla"];
 
     const dataSeries = [];
 
@@ -231,7 +229,7 @@ export class VerevaluacionComponent {
 
     const campos = [
       "pli_bicipital", "pli_tricipital", "pli_subescapular", "pli_cresta_iliaca",
-      "pli_espina_iliaca", "pli_abdominal", "pli_muslo", "pli_pantorrilla"
+      "pli_supraespinal", "pli_abdominal", "pli_muslo", "pli_pantorrilla"
     ];
 
     const dataSeries = [];
@@ -268,6 +266,8 @@ export class VerevaluacionComponent {
     };
   }
 
+  datosEvalidacion = {};
+
 
   //método constructor 
   constructor(private apiEvaluacionService: ApiEvaluacionService,
@@ -275,16 +275,18 @@ export class VerevaluacionComponent {
 
   //ngOnInit - ejecuta esto en el primer renderizado del componente
   ngOnInit(): void {
-    this.rut = this.route.snapshot.paramMap.get('id') ?? '';
-    this.nro = Number(this.route.snapshot.paramMap.get('nro')) ?? 0;
-    this.rutev = localStorage.getItem('rutuser') ?? '';
-    console.log('rut: ' + this.rutev);
+    this.route.queryParamMap.subscribe(params => {
+      this.rut = params.get('id') ?? '';
+      this.nro = Number(params.get('nro') ?? 0)
+      this.rutev = localStorage.getItem('rutser') ?? '';
+      console.log('Info: ' + this.rut + ' ' + this.nro + ' ' + this.rutev);
+    });
     this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut, this.nro).subscribe((evaluacion: ReadEvaluacionArr) => {
       this.evaluacion = evaluacion;
     })
-    // this.apiEvaluacionService.getEvaluacionesByRutFilter(this.rut).subscribe((eva) => {
-    //   console.log(eva);
-    // })
+    this.apiEvaluacionService.getEvaluacionesByRutFilter(this.rut).subscribe((eva) => {
+      this.datosEvalidacion = eva;
+    })
     this.apiUserService.getUserByRut(this.rutev, this.rut).subscribe((user: ReadUser) => {
       this.user = user;
     })
@@ -297,8 +299,8 @@ export class VerevaluacionComponent {
     this.chart_imc = this.generate_imc_chart(this.imcPrueba);
     this.chart_kg = this.generate_chart_kg(this.testChartKG.masa_muscular_kg, this.testChartKG.grasa_kg, this.testChartKG.peso);
     this.chart_perc = this.generate_chart_perc(this.testChartPerc.porcentaje_masa_muscular, this.testChartPerc.porcentaje_grasa_corporal, this.testChartPerc.porcentaje_otros);
-    this.chart_perimetro = this.generate_chart_perimetro(this.datosEvaluacion);
-    this.chart_pliegue = this.generate_chart_perimetro(this.datosEvaluacion);
+    this.chart_perimetro = this.generate_chart_perimetro(this.datosEvalidacion);
+    this.chart_pliegue = this.generate_chart_perimetro(this.datosEvalidacion);
   }
 
   //datos de prueba
@@ -317,29 +319,28 @@ export class VerevaluacionComponent {
     porcentaje_otros: 44
   }
 
-
-  datosEvaluacion = {
-    nro_evaluacion: [3, 4, 5],
-    fecha_evaluacion: [3, 4, 5],
-    peso: [70, 75, 80],
-    talla: [1.70, 1.75, 1.80],
-    pli_bicipital: [10, 12, 14],
-    pli_tricipital: [12, 14, 16],
-    pli_subescapular: [14, 16, 18],
-    pli_cresta_iliaca: [16, 18, 20],
-    pli_espina_iliaca: [18, 20, 22],
-    pli_abdominal: [16, 18, 20],
-    pli_muslo: [18, 20, 22],
-    pli_pantorrilla: [20, 22, 24],
-    per_brazo: [30, 32, 34],
-    per_brazo_flex: [32, 34, 36],
-    per_cintura: [80, 85, 90],
-    per_cadera: [90, 95, 100],
-    per_muslo: [50, 55, 60],
-    per_pantorrilla: [30, 32, 34],
-    diametro_codo: [6, 6, 6],
-    diametro_muneca: [5, 6, 6],
-    diametro_rodilla: [10, 10, 10],
-  }
+  // datosEvalidacion = {
+  //   rut: '19123123-K',
+  //   nombre: 'Juan Perez',
+  //   peso: [70, 75, 80],
+  //   talla: [1.70, 1.75, 1.80],
+  //   pli_bicipital: [10, 12, 14],
+  //   pli_tricipital: [12, 14, 16],
+  //   pli_subescapular: [14, 16, 18],
+  //   pli_cresta_iliaca: [16, 18, 20],
+  //   pli_supraespinal: [18, 20, 22],
+  //   pli_abdominal: [16, 18, 20],
+  //   pli_muslo: [18, 20, 22],
+  //   pli_pantorrilla: [20, 22, 24],
+  //   per_brazo: [30, 32, 34],
+  //   per_braz_flex: [32, 34, 36],
+  //   per_cintura: [80, 85, 90],
+  //   per_cadera: [90, 95, 100],
+  //   per_muslo: [50, 55, 60],
+  //   per_pantorrilla: [30, 32, 34],
+  //   diametro_codo: [6, 6, 6],
+  //   diametro_muneca: [5, 6, 6],
+  //   diametro_rodilla: [10, 10, 10],
+  // }
 
 }

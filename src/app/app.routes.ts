@@ -7,10 +7,9 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioComponent } from './inicio/inicio.component';
-
-import { TestServiceComponent } from './test-service/test-service.component';
 import { NuevopacienteComponent } from './nuevopaciente/nuevopaciente.component';
 import { VerevaluacionComponent } from './verevaluacion/verevaluacion.component';
+import { VerinformeComponent } from './verinforme/verinforme.component';
 import { AuthGuard } from './services/guards/auth.guard';
 
 export const routes: Routes = [
@@ -26,8 +25,7 @@ export const routes: Routes = [
     { path: 'evaluacion', component: EvaluacionComponent, canActivate: [AuthGuard] },
     { path: 'evaluacion/:id', component: EvaluacionComponent, canActivate: [AuthGuard] },
     { path: 'verevaluacion', component: VerevaluacionComponent, canActivate: [AuthGuard] },
-    { path: 'verevaluacion/:id', component: VerevaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'verevaluacion/:id/:nro', component: VerevaluacionComponent, canActivate: [AuthGuard] },
+    { path: 'ver-informe/:id', component: VerinformeComponent, canActivate: [AuthGuard] },
     { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
-
-    { path: 'test-service', component: TestServiceComponent },
 ];

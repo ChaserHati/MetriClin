@@ -10,8 +10,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service';
 import { ApiFichaService, CreateFicha, ReadFicha, UpdateFicha } from '../services/apiFicha/api-ficha.service';
-import { ApiEvaluacionService, ReadEvaluacion } from '../services/apiEvaluacion/api-evaluacion.service';
+import { ApiEvaluacionService, ReadEvaluacionArr } from '../services/apiEvaluacion/api-evaluacion.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-ficha',
@@ -46,7 +47,7 @@ export class FichaComponent {
     fecha_prox_sesion: ''
   };
 
-  evaluaciones: ReadEvaluacion[] = [];
+  evaluaciones = [] as ReadEvaluacionArr[];
 
   //constructor
   constructor(private apiFichaService: ApiFichaService, private apiUserService: ApiUserService,
@@ -54,7 +55,6 @@ export class FichaComponent {
     private route: ActivatedRoute) { }
   //lifecycle hooks
   ngOnInit() {
-    console.log(new Date)
     this.rut = this.route.snapshot.paramMap.get('id') ?? '';
     this.rutev = localStorage.getItem('rutuser') ?? '';
     this.apiUserService.getUserByRut(this.rutev, this.rut).subscribe((user: ReadUser) => {
@@ -63,26 +63,33 @@ export class FichaComponent {
     this.apiFichaService.getFichaByRut(this.rut).subscribe((ficha: ReadFicha) => {
       this.ficha = ficha;
     });
-    this.apiEvalService.getEvaluacionesByRut(this.rut).subscribe((evaluaciones: ReadEvaluacion[]) => {
-      this.evaluaciones = evaluaciones;
+    this.apiEvalService.getEvaluacionesByRutAll(this.rut).subscribe((eva: ReadEvaluacionArr[]) => {
+      this.evaluaciones = eva;
+      console.log(this.evaluaciones.length);
     });
   }
+
+  ver() {
+    alert(this.evaluaciones.length);
+  }
+
   //metodos
 
   navEvaluacion() {
     this.router.navigate(['/evaluacion', this.user.rut])
   }
 
+  navInforme() {
+    this.router.navigate(['/verevaluacion', this.user.rut])
+  }
+
   ir_a_historial(rut: string) {
     this.router.navigate(['/evaluacion', rut]);
   }
+
   ir_a_evaluacion(rut: string, nro: number) {
-    this.router.navigate(['/evaluacion/'], {
-      queryParams: {
-        rut: rut,
-        nro: nro
-      }
-    });
+    this.router.navigate(['/verevaluacion/', rut, nro],
+    );
   }
 
   fechaString(date: Date) {
@@ -95,7 +102,6 @@ export class FichaComponent {
 
   guardarFicha() {
     if (this.ficha.rut === '') {
-      console.log('ficha null')
       let createFicha: CreateFicha = {
         rut: this.rut,
         descripcion: this.ficha.descripcion ?? '',
@@ -106,7 +112,6 @@ export class FichaComponent {
         fecha_prox_sesion: this.fechaString(new Date(this.ficha.fecha_prox_sesion)) ?? this.fechaString(new Date())
       }
       this.apiFichaService.createFicha(createFicha).subscribe(() => {
-        console.log('ficha creada');
         alert('ficha creada');
       })
     } else {
@@ -119,7 +124,6 @@ export class FichaComponent {
         fecha_prox_sesion: this.fechaString(new Date(this.ficha.fecha_prox_sesion)) ?? this.fechaString(new Date())
       }
       this.apiFichaService.updateFicha(this.rut, updatedFicha).subscribe(() => {
-        console.log('ficha actualizada')
         alert('ficha actualizada');
       })
 

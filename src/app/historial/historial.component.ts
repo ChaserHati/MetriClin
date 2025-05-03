@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
-import { MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ApiEvaluacionService, ReadEvaluacion } from '../services/apiEvaluacion/api-evaluacion.service';
+import { ApiEvaluacionService, ReadEvaluacionArr } from '../services/apiEvaluacion/api-evaluacion.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -20,22 +20,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HistorialComponent {
 
   //variables
-  rut:string='';
-  evaluaciones:ReadEvaluacion[]=[];
+  rut: string = '';
+  evaluaciones: ReadEvaluacionArr[] = [];
   //constructor
-  constructor(private apiEvalService:ApiEvaluacionService, private router:Router, private route:ActivatedRoute){}
+  constructor(private apiEvalService: ApiEvaluacionService, private router: Router, private route: ActivatedRoute) { }
 
   //lifecycle hooks
-  ngOnInit(){
-    this.rut = this.route.snapshot.paramMap.get('id')??'';
-    this.apiEvalService.getEvaluacionesByRut(this.rut).subscribe((evaluaciones: ReadEvaluacion[]) => {
-      this.evaluaciones = evaluaciones;
-    });
+  ngOnInit() {
+    this.rut = this.route.snapshot.paramMap.get('id') ?? ''
 
   }
   //metodos
-  ir_a_evaluacion(rut: string, nro: number){
-    this.router.navigate(['/evaluacion/'],{
+  ir_a_evaluacion(rut: string, nro: number) {
+    this.router.navigate(['/evaluacion/'], {
       queryParams: {
         rut: rut,
         nro: nro

@@ -1,7 +1,7 @@
 <div class="container-fluid vh-100">
   <div class="row align-items-center h-100">
     <div class="col-12 col-sm-12 col-md-6 col-lg-6"> <!-- mitad izquierda-->
-      <h1 class="text-left custom-primary-txt">Ficha Paciente</h1>
+      <h1 class="text-left custom-primary-txt h3 my-4">Ficha Paciente</h1>
       <div class="row"> <!--inputs-->
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
           <mat-form-field appearance="outline" class="w-100">
@@ -73,33 +73,36 @@
         </div>
       </div>
       <div class="row my-3">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center mb-3">
           <button mat-flat-button class="w-100" (click)="guardarFicha()">Guardar</button>
         </div>
       </div>
-      <div class="row my-3">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <button mat-flat-button class="w-100" (click)="navEvaluacion()">Nueva Evaluación</button>
-        </div>
-      </div>
-      <div class="row my-3">
+      <div class="row mb-4">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
           <div *ngFor="let eval of evaluaciones"
             class="border rounded-4 px-3 py-2 d-flex justify-content-between align-items-center">
-            <span></span>
-            <div class="d-flex align-items-center gap-2">
-              <button mat-flat-button (click)="ir_a_evaluacion(rut,eval.nro_evaluacion)">Ver Evaluación</button>
+            <span>Evaluación n°{{eval.nro_evaluacion}} - {{eval.fecha_evaluacion | date: 'dd/MM/yyyy'}}</span>
+            <div class="d-flex align-items-center gap-2 border">
+              <button mat-flat-button (click)="ir_a_evaluacion(rut, eval.nro_evaluacion)">Ver Evaluación</button>
               <mat-checkbox></mat-checkbox>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <button mat-flat-button class="w-100 my-1">Crear Informe</button>
-          <button mat-flat-button class="w-100 my-1" (click)="ir_a_historial(rut)">Ver Historial</button>
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <div class="col-4 d-flex">
+            <button mat-flat-button class="col-10 m-auto" (click)="navEvaluacion()">Nueva Evaluación</button>
+          </div>
+          <div class="col-4 d-flex">
+            <button mat-flat-button class="col-10 my-1" (click)="navInforme()">Ver Informe</button>
+          </div>
+          <div class="col-4 d-flex">
+            <button mat-flat-button class="col-10 my-1" (click)="ir_a_historial(rut)">Ver Historial</button>
+          </div>
         </div>
       </div>
+      <div class="my-5"></div>
     </div>
     <div
       class="col-12 col-sm-12 col-md-6 col-lg-6 text-center custom-primary-bg vh-100 d-flex flex-column justify-content-evenly align-items-center">

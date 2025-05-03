@@ -1,23 +1,6 @@
 <mat-sidenav-container class="vh-100">
     <mat-sidenav mode="side" opened>
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 h-100 d-flex flex-column justify-content-evenly">
-                    <button mat-fab extended>
-                        <mat-icon>person_search</mat-icon>
-                        Pacientes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>bar_chart</mat-icon>
-                        Informes
-                    </button>
-                    <button mat-fab extended>
-                        <mat-icon>settings</mat-icon>
-                        Config
-                    </button>
-                </div>
-            </div>
-        </div>
+        <app-navmenu></app-navmenu>
     </mat-sidenav>
     <mat-sidenav-content class="">
         <div class="container-fluid vh-100">
@@ -135,10 +118,12 @@
                     <canvasjs-chart [options]="chart_perc" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <canvasjs-chart [options]="chart_perimetro" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                    <canvasjs-chart [options]="chart_perimetro"
+                        [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 h-100 d-flex flex-column justify-content-center">
-                    <canvasjs-chart [options]="chart_pliegue" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+                    <canvasjs-chart [options]="chart_pliegue"
+                        [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
                 </div>
 
             </div>

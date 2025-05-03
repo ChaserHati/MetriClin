@@ -11,8 +11,6 @@ import { MatError } from '@angular/material/form-field';
 import { AuthService } from '../services/apiAuth/auth.service';
 import { Router } from '@angular/router';
 
-
-
 interface TokenResponse {
   token: string;
 }
@@ -40,15 +38,17 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       const { rutuser, password } = this.loginForm.value;
+      const indexDv = rutuser.indexOf('-');
+      const rutSinDv = rutuser.slice(0, indexDv);
       const infoauth = {
-        rut: rutuser,
+        rut: rutSinDv,
         password: password
       }
       // Aquí va la lógica para validar el login
       this.authService.login(infoauth).subscribe({
         next: (res) => {
           this.authService.saveToken(res.token);
-          localStorage.setItem('rutuser', rutuser);
+          localStorage.setItem('rutuser', rutSinDv);
           this.router.navigate(['/dashboard']);
           console.log('Usuario autenticado, la respuesta es:', res.token);
         },
