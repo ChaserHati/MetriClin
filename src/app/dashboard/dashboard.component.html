@@ -25,11 +25,14 @@
                     <div class="row my-3 h-50">
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3"
                             *ngFor="let usuario of usuarios.slice(0, 4)">
-                            <mat-card class="h-100" appearance="outlined">
-                                <mat-card-title> {{usuario.nombre}} </mat-card-title>
-                                <mat-card-content> {{usuario.rut}} </mat-card-content>
+                            <mat-card class="h-100 px-3 py-3" appearance="outlined">
+                                <h4 class="mb-3"> {{usuario.nombre}} {{usuario.ap_paterno}} </h4>
+                                <p>Rut: {{usuario.rut}} </p>
+                                <p>Correo: {{usuario.correo}} </p>
+                                <p>Telefono: {{usuario.num_celular}} </p>
                                 <mat-card-actions>
-                                    <button mat-flat-button (click)="ir_a_paciente(usuario.rut)">Ver Paciente</button>
+                                    <button mat-flat-button (click)="ir_a_paciente(usuario.rut)">Ver
+                                        Paciente</button>
                                 </mat-card-actions>
                             </mat-card>
                         </div>

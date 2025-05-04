@@ -5,27 +5,27 @@ import { inject } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 export interface ReadEvaluacionObj {
-  nro_evaluacion: number[],
-  fecha_evaluacion: string[],
-  peso: number[],
-  talla: number[],
-  pli_bicipital: number[],
-  pli_tricipital: number[],
-  pli_subescapular: number[],
-  pli_cresta_iliaca: number[],
-  pli_espina_iliaca: number[],
-  pli_abdominal: number[],
-  pli_muslo: number[],
-  pli_pantorrilla: number[],
-  per_brazo: number[],
-  per_brazo_flex: number[],
-  per_cintura: number[],
-  per_cadera: number[],
-  per_muslo: number[],
-  per_pantorrilla: number[],
-  diametro_codo: number[],
-  diametro_muneca: number[],
-  diametro_rodilla: number[],
+  nro_evaluacion: number[];
+  fecha_evaluacion: number[];
+  peso: number[];
+  talla: number[];
+  pli_bicipital: number[];
+  pli_tricipital: number[];
+  pli_subescapular: number[];
+  pli_cresta_iliaca: number[];
+  pli_espina_iliaca: number[];
+  pli_abdominal: number[];
+  pli_muslo: number[];
+  pli_pantorrilla: number[];
+  per_brazo: number[];
+  per_brazo_flex: number[];
+  per_cintura: number[];
+  per_cadera: number[];
+  per_muslo: number[];
+  per_pantorrilla: number[];
+  diametro_codo: number[];
+  diametro_muneca: number[];
+  diametro_rodilla: number[];
 }
 
 export interface ReadEvaluacionArr {
@@ -118,7 +118,7 @@ export class ApiEvaluacionService {
 
   constructor() { }
 
-  getEvaluacionesByRutFilter(rut: string): Observable<any> {
+  getEvaluacionesByRutFilter(rut: string): Observable<ReadEvaluacionObj> {
     return this.http.get<any>(`${this.apiUrl}/${rut}`).pipe(
       map(res => ({
         nro_evaluacion: res[0],
@@ -139,9 +139,9 @@ export class ApiEvaluacionService {
         per_cadera: res[15],
         per_muslo: res[16],
         per_pantorrilla: res[17],
-        diametro_humero: res[18],
+        diametro_codo: res[18],
         diametro_muneca: res[19],
-        diametro_femur: res[20]
+        diametro_rodilla: res[20]
       }))
     );
   }

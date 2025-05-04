@@ -10,10 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ApiEvaluacionService, ReadEvaluacionObj, ReadEvaluacionArr } from '../services/apiEvaluacion/api-evaluacion.service';
 import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { NavmenuComponent } from '../components/navmenu/navmenu.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-verinforme',
-  imports: [MatFormFieldModule, CommonModule, FormsModule, MatInputModule, MatSidenavModule, MatIconModule, MatButtonModule, CanvasJSAngularChartsModule],
+  imports: [MatFormFieldModule, CommonModule, NavmenuComponent, FormsModule, MatInputModule, MatSidenavModule, MatIconModule, MatButtonModule, CanvasJSAngularChartsModule],
   templateUrl: './verinforme.component.html',
   styleUrl: './verinforme.component.css'
 })
@@ -22,6 +24,12 @@ export class VerinformeComponent {
   rut: string = '';
   rutev: string = '';
   nro: number = 1;
+  mmKg: number = 0;
+  mmPorc: number = 0;
+  gcKg: number = 0;
+  gcPorc: number = 0;
+  otrosPorc: number = 0;
+  imc: number = 0;
   user: ReadUser = {
     rut: '',
     nombre: '',
@@ -55,21 +63,16 @@ export class VerinformeComponent {
     diametro_humero: 0,
     diametro_muneca: 0,
     diametro_femur: 0,
-    // // cod_imc: 0,
-    // cod_grasa_corporal: 0,
-    // cod_masa_muscular: 0
   }
   isDisabled: boolean = true;
 
   //formulas para obtener indicadores físicos
-  imc() {
-    let peso = this.evaluacion.peso;
-    let talla = this.evaluacion.talla;
+  imcCalc(peso: number, talla: number): number {
     let imc = peso / (talla / 100) ** 2;
-    imc = parseFloat(imc.toFixed(1));
+    imc = parseInt(imc.toFixed(1));
     return imc;
   }
-  grasaCorporalPorcentaje() {
+  grasaCorporalPorcCalc() {
     let eva = this.evaluacion;
     let sexo = this.user.sexo;
     let suma6p = eva.pli_tricipital + eva.pli_subescapular + eva.pli_espina_iliaca + eva.pli_abdominal + eva.pli_muslo + eva.pli_pantorrilla;
@@ -82,14 +85,14 @@ export class VerinformeComponent {
     grasaCorporal = parseFloat(grasaCorporal.toFixed(0));
     return grasaCorporal;
   }
-  grasaCorporalKg() {
-    let grasaPorc = this.grasaCorporalPorcentaje();
+  grasaCorporalKgCalc() {
+    let grasaPorc = this.grasaCorporalPorcCalc();
     let peso = this.evaluacion.peso;
     let grasaCorporal = (grasaPorc * peso) / 100;
     grasaCorporal = parseFloat(grasaCorporal.toFixed(1))
     return grasaCorporal;
   }
-  masaMuscularKg() {
+  masaMuscularKgCalc() {
     let eva = this.evaluacion;
     let talla = eva.talla;
     let perBrazoCorregido = eva.per_brazo - ((eva.pli_tricipital / 10) * 3.14);
@@ -100,11 +103,16 @@ export class VerinformeComponent {
     masaMuscular = parseFloat(masaMuscular.toFixed(1));
     return masaMuscular;
   }
-  masaMuscularPorcentaje() {
-    let musculoKg = this.masaMuscularKg();
+  masaMuscularPorcCalc() {
+    let musculoKg = this.masaMuscularKgCalc();
     let masaMuscular = (musculoKg * 100) / this.evaluacion.peso;
     masaMuscular = parseFloat(masaMuscular.toFixed(0));
     return masaMuscular;
+  }
+  otrosPorcCalc(mmKg: number, gcKg: number, peso: number) {
+    const otrosKg = peso - (mmKg + gcKg);
+    const otrosPorc = (otrosKg * 100) / peso;
+    return otrosPorc;
   }
 
   //codigo de graficos
@@ -266,60 +274,60 @@ export class VerinformeComponent {
     };
   }
 
-  datosEvalidacion = {};
 
+  datosEvaluacion = {
+    nro_evaluacion: [0, 0, 0],
+    fecha_evaluacion: [0, 0, 0],
+    peso: [0, 0, 0],
+    talla: [0, 0, 0],
+    pli_bicipital: [0, 0, 0],
+    pli_tricipital: [0, 0, 0],
+    pli_subescapular: [0, 0, 0],
+    pli_cresta_iliaca: [0, 0, 0],
+    pli_espina_iliaca: [0, 0, 0],
+    pli_abdominal: [0, 0, 0],
+    pli_muslo: [0, 0, 0],
+    pli_pantorrilla: [0, 0, 0],
+    per_brazo: [0, 0, 0],
+    per_brazo_flex: [0, 0, 0],
+    per_cintura: [0, 0, 0],
+    per_cadera: [0, 0, 0],
+    per_muslo: [0, 0, 0],
+    per_pantorrilla: [0, 0, 0],
+    diametro_codo: [0, 0, 0],
+    diametro_muneca: [0, 0, 0],
+    diametro_rodilla: [0, 0, 0],
+  }
 
-  //método constructor 
   constructor(private apiEvaluacionService: ApiEvaluacionService,
     private apiUserService: ApiUserService, private route: ActivatedRoute, private router: Router) { }
 
-  //ngOnInit - ejecuta esto en el primer renderizado del componente
-  ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      this.rut = params.get('id') ?? '';
-      this.nro = Number(params.get('nro') ?? 0)
-      this.rutev = localStorage.getItem('rutser') ?? '';
-      console.log('Info: ' + this.rut + ' ' + this.nro + ' ' + this.rutev);
-    });
-    this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut, this.nro).subscribe((evaluacion: ReadEvaluacionArr) => {
-      this.evaluacion = evaluacion;
-    })
-    this.apiEvaluacionService.getEvaluacionesByRutFilter(this.rut).subscribe((eva) => {
-      this.datosEvalidacion = eva;
-    })
-    this.apiUserService.getUserByRut(this.rutev, this.rut).subscribe((user: ReadUser) => {
-      this.user = user;
-    })
-    this.imc();
-    this.grasaCorporalPorcentaje();
-    this.grasaCorporalKg();
-    this.masaMuscularKg();
-    this.masaMuscularPorcentaje();
-
-    this.chart_imc = this.generate_imc_chart(this.imcPrueba);
-    this.chart_kg = this.generate_chart_kg(this.testChartKG.masa_muscular_kg, this.testChartKG.grasa_kg, this.testChartKG.peso);
-    this.chart_perc = this.generate_chart_perc(this.testChartPerc.porcentaje_masa_muscular, this.testChartPerc.porcentaje_grasa_corporal, this.testChartPerc.porcentaje_otros);
-    this.chart_perimetro = this.generate_chart_perimetro(this.datosEvalidacion);
-    this.chart_pliegue = this.generate_chart_perimetro(this.datosEvalidacion);
+  async ngOnInit(): Promise<void> {
+    this.rut = this.route.snapshot.paramMap.get('id') ?? '';
+    this.nro = (await firstValueFrom(this.apiEvaluacionService.getEvaluacionesByRutAll(this.rut))).length;
+    this.rutev = localStorage.getItem('rutuser') ?? '';
+    this.evaluacion = await firstValueFrom(this.apiEvaluacionService.getEvaluacionByNroAndRut(this.rut, this.nro));
+    this.datosEvaluacion = await firstValueFrom(this.apiEvaluacionService.getEvaluacionesByRutFilter(this.rut));
+    console.log('datos ev: ' + this.datosEvaluacion);
+    this.user = await firstValueFrom(this.apiUserService.getUserByRut(this.rutev, this.rut));
+    this.imc = this.imcCalc(this.evaluacion.peso, this.evaluacion.talla);
+    this.gcKg = this.grasaCorporalKgCalc();
+    this.gcPorc = this.grasaCorporalPorcCalc();
+    this.mmKg = this.masaMuscularKgCalc();
+    this.mmPorc = this.masaMuscularPorcCalc();
+    this.otrosPorc = this.otrosPorcCalc(this.mmKg, this.gcKg, this.evaluacion.peso);
   }
 
-  //datos de prueba
-
-  imcPrueba: number = 26;
-
-  testChartKG = {
-    peso: 65,
-    grasa_kg: 11.7,
-    masa_muscular_kg: 24.7
+  ngAfterContentChecked() {
+    this.chart_imc = this.generate_imc_chart(this.imc);
+    this.chart_kg = this.generate_chart_kg(this.mmKg, this.gcKg, this.evaluacion.peso);
+    this.chart_perc = this.generate_chart_perc(this.mmPorc, this.gcPorc, this.otrosPorc);
+    // this.chart_perimetro = this.generate_chart_perimetro(this.datosEvaluacion);
+    // this.chart_pliegue = this.generate_chart_pliegue(this.datosEvaluacion);
   }
 
-  testChartPerc = {
-    porcentaje_masa_muscular: 38,
-    porcentaje_grasa_corporal: 18,
-    porcentaje_otros: 44
-  }
 
-  // datosEvalidacion = {
+  // datosEvaluacion = {
   //   rut: '19123123-K',
   //   nombre: 'Juan Perez',
   //   peso: [70, 75, 80],

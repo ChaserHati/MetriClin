@@ -24,31 +24,31 @@ export class DashboardComponent {
   usuarios: ReadUser[] = [];
   rutev: string = '';
 
-  crearUsuario() {
-    const infoNewUser = {
-      rut: '18123123',
-      dv_rut: 'K',
-      nombre: 'Testing',
-      ap_paterno: 'Desde',
-      ap_materno: 'Front',
-      fecha_nac: '05-05-2025',
-      sexo: 'masculino',
-      password: 'string123',
-      correo: 'testing@gmail.com',
-      num_celular: 987687687,
-      rut_evaluador: '15123123',
-      cod_rol: 3,
-      cod_comuna: 1
-    }
-    this.apiUserService.createUser(infoNewUser).subscribe({
-      next: respuesta => {
-        console.log('Usuario creado:', respuesta);
-      },
-      error: error => {
-        console.error('Error al crear usuario:', error);
-      }
-    })
-  }
+  // crearUsuario() {
+  //   const infoNewUser = {
+  //     rut: '18123123',
+  //     dv_rut: 'K',
+  //     nombre: 'Testing',
+  //     ap_paterno: 'Desde',
+  //     ap_materno: 'Front',
+  //     fecha_nac: '05-05-2025',
+  //     sexo: 'masculino',
+  //     password: 'string123',
+  //     correo: 'testing@gmail.com',
+  //     num_celular: 987687687,
+  //     rut_evaluador: '15123123',
+  //     cod_rol: 3,
+  //     cod_comuna: 1
+  //   }
+  //   this.apiUserService.createUser(infoNewUser).subscribe({
+  //     next: respuesta => {
+  //       console.log('Usuario creado:', respuesta);
+  //     },
+  //     error: error => {
+  //       console.error('Error al crear usuario:', error);
+  //     }
+  //   })
+  // }
 
   ngOnInit(): void {
     this.rutev = localStorage.getItem('rutuser') ?? '';

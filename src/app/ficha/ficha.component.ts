@@ -80,7 +80,7 @@ export class FichaComponent {
   }
 
   navInforme() {
-    this.router.navigate(['/verevaluacion', this.user.rut])
+    this.router.navigate(['/ver-informe', this.user.rut])
   }
 
   ir_a_historial(rut: string) {
