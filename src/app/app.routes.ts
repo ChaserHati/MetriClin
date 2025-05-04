@@ -11,6 +11,7 @@ import { NuevopacienteComponent } from './nuevopaciente/nuevopaciente.component'
 import { VerevaluacionComponent } from './verevaluacion/verevaluacion.component';
 import { VerinformeComponent } from './verinforme/verinforme.component';
 import { AuthGuard } from './services/guards/auth.guard';
+import { PdfGeneratorComponent } from './pdf-generator/pdf-generator.component';
 
 export const routes: Routes = [
 
@@ -28,4 +29,5 @@ export const routes: Routes = [
     { path: 'verevaluacion/:id/:nro', component: VerevaluacionComponent, canActivate: [AuthGuard] },
     { path: 'ver-informe/:id', component: VerinformeComponent, canActivate: [AuthGuard] },
     { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
+    {path: 'pdf', component: PdfGeneratorComponent}
 ];
