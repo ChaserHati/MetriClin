@@ -11,7 +11,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 })
 export class PdfGeneratorComponent {
 
-  @ViewChild('chart', { static: false }) chartComponent: any;
+  @ViewChild('chart', { static: false }) chartComponent: any; //esto se repite por cada grafico que se quiere incluir en el informe
 
   chartOptions = {
 		title: {
@@ -102,7 +102,7 @@ export class PdfGeneratorComponent {
     // 5. Insert chart from CanvasJS
     setTimeout(() => {
       const chartImages = [
-        this.getCanvasImageDataURL(this.chartComponent),
+        this.getCanvasImageDataURL(this.chartComponent), // esto tambien se repite por cada grafico que se quiere incluir en el informe, con el nombre que se le pone en ViewChild
       ];
   
       for (const img of chartImages) {
