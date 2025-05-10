@@ -5,6 +5,7 @@ import { HistorialComponent } from './historial/historial.component';
 import { EvaluacionComponent } from './evaluacion/evaluacion.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NuevopacienteComponent } from './nuevopaciente/nuevopaciente.component';
@@ -29,5 +30,6 @@ export const routes: Routes = [
     { path: 'verevaluacion/:id/:nro', component: VerevaluacionComponent, canActivate: [AuthGuard] },
     { path: 'ver-informe/:id', component: VerinformeComponent, canActivate: [AuthGuard] },
     { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
-    {path: 'pdf', component: PdfGeneratorComponent}
+    { path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard] },
+    { path: 'pdf', component: PdfGeneratorComponent }
 ];

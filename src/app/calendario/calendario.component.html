@@ -1,0 +1,26 @@
+<mat-sidenav-container class="vh-100">
+
+    <mat-sidenav mode="side" opened>
+        <app-navmenu></app-navmenu>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="">
+        <div class="calendar-container col-8">
+            <div class="calendar-header">
+                <div class="calendar-cell" *ngFor="let dia of calendario">
+                    <div class="calendar-head">
+                        {{dia.dia}}
+                    </div>
+                    <div class="calendar-body">
+                        <div class="calendar-row" *ngFor="let ses of dia.sesion">
+                            <p style="margin: auto;">
+                                {{ ses.nombre }} {{ses.ap_paterno}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

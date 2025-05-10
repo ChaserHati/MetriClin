@@ -27,4 +27,8 @@ export class NavmenuComponent {
     this.router.navigate(['/dashboard']);
   }
 
+  navCalendario() {
+    this.router.navigate(['/calendario'])
+  }
+
 }

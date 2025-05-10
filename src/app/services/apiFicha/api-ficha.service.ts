@@ -30,6 +30,13 @@ export interface UpdateFicha {
   fecha_ingreso: string;
   fecha_prox_sesion: string;
 }
+export interface Control {
+  nombre: string,
+  ap_paterno: string,
+  ap_materno: string,
+  rut: string;
+  fecha_prox_sesion: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +60,20 @@ export class ApiFichaService {
         fecha_ingreso: res[5],
         fecha_prox_sesion: res[6],
       }))
+    )
+  }
+
+  getFichaProxControl(fechaInicio: string, fechaFin: string): Observable<Control[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${fechaInicio}/${fechaFin}`).pipe(
+      map(res =>
+        res.map(el => ({
+          nombre: el[0],
+          ap_paterno: el[1],
+          ap_materno: el[2],
+          rut: el[3],
+          fecha_prox_sesion: el[4]
+        }))
+      )
     )
   }
 
