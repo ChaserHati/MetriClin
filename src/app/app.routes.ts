@@ -13,6 +13,7 @@ import { VerinformeComponent } from './verinforme/verinforme.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { PdfGeneratorComponent } from './pdf-generator/pdf-generator.component';
 import { CredInformeComponent } from './cred-informe/cred-informe.component';
+import { AgendaComponent } from './agenda/agenda.component';
 
 export const routes: Routes = [
 
@@ -32,5 +33,7 @@ export const routes: Routes = [
     { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
     { path: 'credinforme', component: CredInformeComponent },
     { path: 'verinforme/:id', component: VerinformeComponent },
-    {path: 'pdf', component: PdfGeneratorComponent}
+    {path: 'pdf', component: PdfGeneratorComponent},
+    {path: 'agenda', component:AgendaComponent}
 ];
+
