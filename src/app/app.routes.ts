@@ -21,6 +21,8 @@ export const routes: Routes = [
     { path: '', component: InicioComponent },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
+    { path: 'agenda', component: AgendaComponent },
+    { path: 'crear-pdf', component: CredInformeComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'ficha', component: FichaComponent, canActivate: [AuthGuard] },
     { path: 'ficha/:id', component: FichaComponent, canActivate: [AuthGuard] },
@@ -32,6 +34,7 @@ export const routes: Routes = [
     { path: 'verevaluacion/:id/:nro', component: VerevaluacionComponent, canActivate: [AuthGuard] },
     { path: 'ver-informe/:id', component: VerinformeComponent, canActivate: [AuthGuard] },
     { path: 'nuevopaciente', component: NuevopacienteComponent, canActivate: [AuthGuard] },
+    { path: 'calendario', component: CalendarioComponent, canActivate: [AuthGuard] },
     { path: 'pdf', component: PdfGeneratorComponent }
 ];
 
