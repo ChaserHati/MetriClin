@@ -1,0 +1,51 @@
+<div class="form-container">
+  
+
+  <form [formGroup]="form" (ngSubmit)="tomarHora()">
+   
+    
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+    </div>
+
+   
+   
+    <div>
+      <label for="rut">RUT:</label>
+      <input id="rut" type="text" formControlName="rut" placeholder="12345678-9" />
+    </div>
+
+   
+    <div>
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" min="2025-05-01" max="2025-12-31">
+ <!--- <input id="fecha" type="date" formControlName="fecha" />-->
+    </div>
+
+ <div>
+    <label for="profesional">Profesional</label>
+    <select id="profesional" formControlName="profesional">
+      <option *ngFor="let profesional of profesionales" [value]="profesional.id">{{ profesional.nombre }}</option>
+    </select>
+  </div>
+
+
+   
+    <div>
+      <label for="hora">Hora:</label>
+      <select id="hora" formControlName="hora">
+        <option value="" disabled selected>Seleccione una hora</option>
+        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
+      </select>
+    </div>
+
+   
+    <div>
+      <button type="submit">Reservar</button>
+    </div>
+  </form>
+
+  
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+</div>
