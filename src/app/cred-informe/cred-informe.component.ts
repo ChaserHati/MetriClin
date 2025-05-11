@@ -21,6 +21,6 @@ constructor(private router: Router) {}
 //metodo
   ir_ver_informe(rut:string,nro: number) {
     localStorage.setItem('rutpaciente',rut);
-    this.router.navigate(['/verinforme', nro]);
+    this.router.navigate(['/ver-informe', nro]);
   }
 }

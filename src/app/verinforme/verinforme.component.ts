@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RedirectCommand } from '@angular/router';
@@ -12,6 +12,8 @@ import { ApiUserService, ReadUser } from '../services/apiUser/api-user.service';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { NavmenuComponent } from '../components/navmenu/navmenu.component';
 import { firstValueFrom } from 'rxjs';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-verinforme',
@@ -115,7 +117,7 @@ export class VerinformeComponent {
     return otrosPorc;
   }
 
-  //codigo de graficos
+  //codigo de graficos  
 
   chart_imc: any;
   chart_kg: any;
@@ -350,5 +352,104 @@ export class VerinformeComponent {
   //   diametro_muneca: [5, 6, 6],
   //   diametro_rodilla: [10, 10, 10],
   // }
+
+  //codigo generar pdf
+
+  @ViewChild('chartimc', { static: false }) chart_imc_pdf: any;
+  @ViewChild('chartkg', { static: false }) chart_kg_pdf: any;
+  @ViewChild('chartperc', { static: false }) chart_perc_pdf: any;
+  @ViewChild('chartperi', { static: false }) chart_peri_pdf: any;
+  @ViewChild('chartpli', { static: false }) chart_pli_pdf: any;
+
+  getCanvasImageDataURL(chartComponent: any): string | null {
+    const canvas = chartComponent?.chart?.container?.querySelector('canvas');
+    if (!canvas) {
+      console.error('Canvas not found in provided chart component.');
+      return null;
+    }
+    return canvas.toDataURL('image/png');
+  }
+
+  generatePDF() {
+  const doc = new jsPDF();
+  const pageHeight = doc.internal.pageSize.height;
+
+  // 1. Title
+  doc.setFontSize(20);
+  doc.text('Informe', 105, 20, { align: 'center' });
+
+  // 2. Indicadores Generales
+  doc.setFontSize(14);
+  doc.text('Indicadores Generales', 14, 35);
+  autoTable(doc, {
+    startY: 40,
+    head: [['Indicador', 'Valor', 'Interpretación']],
+    body: [
+      ['Peso', this.evaluacion.peso, ''],
+      ['Talla', this.evaluacion.talla, ''],
+      ['IMC', this.imc, ''],
+    ]
+  });
+
+  let finalY = (doc as any).lastAutoTable.finalY + 10;
+
+  // Helper para añadir texto con salto de página si es necesario
+  const safeText = (text: string) => {
+    if (finalY + 10 > pageHeight) {
+      doc.addPage();
+      finalY = 20;
+    }
+    doc.text(text, 14, finalY);
+    finalY += 5;
+  };
+
+  // 3. Masa Muscular
+  safeText('Masa Muscular');
+  autoTable(doc, {
+    startY: finalY,
+    head: [['Indicador', 'Valor', 'Interpretación']],
+    body: [
+      ['Masa Muscular (kg)', this.mmKg+' kg', ''],
+      ['Masa Muscular (%)', this.mmPorc+'%', ''],
+    ]
+  });
+  finalY = (doc as any).lastAutoTable.finalY + 10;
+
+  // 4. Masa Grasa
+  safeText('Masa Grasa');
+  autoTable(doc, {
+    startY: finalY,
+    head: [['Indicador', 'Valor', 'Interpretación']],
+    body: [
+      ['Grasa Corporal (kg)', this.gcKg+' kg', ''],
+      ['Grasa Corporal (%)', this.gcPorc+'%', ''],
+    ]
+  });
+  finalY = (doc as any).lastAutoTable.finalY + 10;
+
+  // 5. Insertar gráficos
+  setTimeout(() => {
+    const chartImages = [
+      this.getCanvasImageDataURL(this.chart_imc_pdf),
+      this.getCanvasImageDataURL(this.chart_kg_pdf),
+      this.getCanvasImageDataURL(this.chart_perc_pdf),
+      //this.getCanvasImageDataURL(this.chart_peri_pdf),
+      //this.getCanvasImageDataURL(this.chart_pli_pdf),
+    ];
+
+    for (const img of chartImages) {
+      if (finalY + 100 > pageHeight) {
+        doc.addPage();
+        finalY = 20;
+      }
+      if (img) {
+        doc.addImage(img, 'PNG', 10, finalY, 180, 100);
+        finalY += 110;
+      }
+    }
+
+    doc.save('informe-nutricional.pdf');
+  }, 500);
+}
 
 }
